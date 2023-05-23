@@ -3,7 +3,7 @@
 import {  motion , AnimatePresence } from 'framer-motion';
 import {useState , useEffect} from 'react'
 
- function SpotLightItem({ children }) {
+ function SpotLightItem({ children }: any) {
   const mousePosition = useMousePosition();
   const [isHovered, setIsHovered] = useState(false);
   return (
@@ -60,7 +60,7 @@ const useMousePosition = () => {
 		y: null,
 	});
 	useEffect(() => {
-		const updateMousePosition = (ev) => {
+		const updateMousePosition = (ev: any) => {
 			setMousePosition({ x: ev.clientX, y: ev.clientY });
 		};
 		window.addEventListener("mousemove", updateMousePosition);
