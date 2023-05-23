@@ -38,20 +38,23 @@ const items = [
 ]
 function Avatar() {
   return (
-    <div className="-mt-7 relative flex flex-nowrap items-center justify-center  overflow-y-hidden overflow-x-scroll scrollbar-hide ">
-      <div className="absolute top-0 flex items-center justify-center w-1/3 -translate-y-1/2 left-1/2 -translate-x-1/2 aspect-square">
-          <div className="absolute inset-0 translate-z-0 bg-zinc-50 rounded-full blur-[120px] opacity-50" />
-        </div>
-      <div className="p-10 flex gap-5">
+    <div className="relative -mt-7 flex flex-nowrap items-center justify-center  overflow-y-hidden overflow-x-scroll scrollbar-hide ">
+      <div className="absolute left-1/2 top-0 flex aspect-square w-1/3 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+        <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-50 blur-[120px]" />
+      </div>
+      <div className="flex gap-5 p-10">
         {items.map((item) => (
-          <div style={{zIndex: "20"}} className="">
-            <div className="flex h-40 w-3h-40 items-center  justify-center">
+          <div style={{ zIndex: "20" }} className="">
+            <div className="w-3h-40 flex h-40 items-center  justify-center">
               {/* <div className=" h-32 w-32 rounded-full bg-foreground "> */}
               <div className="relative h-32  w-32 rounded-full bg-foreground ">
                 <Image
-                  className="absolute -bottom-1  "
+                  className="absolute -bottom-1 opacity-0 transition-opacity duration-200  "
                   src={item.image}
                   alt=""
+                  onLoadingComplete={(image) =>
+                    image.classList.remove("opacity-0")
+                  }
                 />
               </div>
               {/* </div> */}
