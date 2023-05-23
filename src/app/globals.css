@@ -2,26 +2,291 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --brand-primary: rgb(47, 112, 193);
+    --brand-secondary: rgb(116, 97, 195);
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --custom-front-bg: 0, 0%, 30%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 215 20.2% 65.1%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --brand-primary: rgb(138, 180, 248);
+    --brand-secondary: rgb(193, 168, 226);
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+    --custom-front-bg: 0, 0%, 77%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
+/* .card::before,
+.card::after {
+  @apply absolute left-0 top-0 h-full w-full rounded-[inherit] opacity-0 transition-opacity duration-500 content-[""];
+}
+
+.card::before {
+  @apply z-30 bg-card-shine;
+}
+
+.card::after {
+  @apply z-10 bg-border-shine;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.cards:hover > .card::after {
+  opacity: 1;
+} */
+
+.menu-button .bar:nth-of-type(1) {
+  margin-top: 0px;
+}
+
+.menu-button .bar:nth-of-type(3) {
+  margin-bottom: 0px;
+}
+
+.bar {
+  position: relative;
+  display: block;
+
+  width: 30px;
+  height: 3px;
+
+  margin: 10px auto;
+  background-color: #fff;
+
+  border-radius: 10px;
+
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.menu-button:hover .bar:nth-of-type(1) {
+  -webkit-transform: translateY(1.5px) rotate(-4.5deg);
+  -ms-transform: translateY(1.5px) rotate(-4.5deg);
+  transform: translateY(1.5px) rotate(-4.5deg);
+}
+
+.menu-button:hover .bar:nth-of-type(2) {
+  opacity: 0.9;
+}
+
+.menu-button:hover .bar:nth-of-type(3) {
+  -webkit-transform: translateY(-1.5px) rotate(4.5deg);
+  -ms-transform: translateY(-1.5px) rotate(4.5deg);
+  transform: translateY(-1.5px) rotate(4.5deg);
+}
+
+.cross .bar:nth-of-type(1) {
+  -webkit-transform: translateY(15px) rotate(-45deg);
+  -ms-transform: translateY(15px) rotate(-45deg);
+  transform: translateY(15px) rotate(-45deg);
+}
+
+.cross .bar:nth-of-type(2) {
+  opacity: 0;
+}
+
+.cross .bar:nth-of-type(3) {
+  -webkit-transform: translateY(-15px) rotate(45deg);
+  -ms-transform: translateY(-15px) rotate(45deg);
+  transform: translateY(-15px) rotate(45deg);
+}
+
+.cross:hover .bar:nth-of-type(1) {
+  -webkit-transform: translateY(13.5px) rotate(-40.5deg);
+  -ms-transform: translateY(13.5px) rotate(-40.5deg);
+  transform: translateY(13.5px) rotate(-40.5deg);
+}
+
+.cross:hover .bar:nth-of-type(2) {
+  opacity: 0.1;
+}
+
+.cross:hover .bar:nth-of-type(3) {
+  -webkit-transform: translateY(-13.5px) rotate(40.5deg);
+  -ms-transform: translateY(-13.5px) rotate(40.5deg);
+  transform: translateY(-13.5px) rotate(40.5deg);
+}
+/*  */
+
+.z99 {
+  z-index: 99;
+}
+
+.z50 {
+  z-index: 50;
+}
+
+.z20 {
+  z-index: 20;
+}
+
+/* //swiper */
+.embla {
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+  --slide-height: 19rem;
+  padding: 1.6rem;
+}
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  backface-visibility: hidden;
+  display: flex;
+  touch-action: pan-y;
+  flex-direction: row;
+  height: auto;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  overflow: hidden;
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
+  position: relative;
+}
+.embla__slide__img {
+  display: block;
+  height: fit-content;
+  width: 100%;
+  object-fit: cover;
+}
+
+.embla__dot,
+.embla__button {
+  -webkit-appearance: none;
+  background-color: transparent;
+  touch-action: manipulation;
+  display: inline-flex;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+.embla__dots {
+  z-index: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.embla__dot {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  margin-right: 0.75rem;
+  margin-left: 0.75rem;
+}
+.embla__dot:after {
+  background: hsl(var(--foreground));
+  border-radius: 0.2rem;
+  width: 100%;
+  height: 0.3rem;
+  content: "";
+}
+.embla__dot--selected:after {
   background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    45deg,
+    var(--brand-primary),
+    var(--brand-secondary)
+  );
+}
+.embla__button {
+  z-index: 1;
+  color: var(--background);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.embla__button--prev {
+  right: 2.6rem;
+}
+.embla__button--next {
+  right: 1.6rem;
+}
+.embla__button:disabled {
+  opacity: 0.3;
+}
+.embla__button__svg {
+  width: 65%;
+  height: 65%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
 }
