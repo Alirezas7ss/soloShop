@@ -13,7 +13,6 @@ function page() {
   return (
     <div >
       <div className='flex'>
-
         <div className='w-24 h-96 bg-primary border-4 border-l border-green-500'><p className='rotate-90 mt-10  text-red-500 text-2xl'>primary</p></div>
         <div className='w-24 h-96 bg-primary-foreground border-4 border-l border-red-500'><p className='rotate-90 mt-10  text-red-500 text-2xl'>primary-f</p></div>
         <div className='w-24 h-96 bg-secondary border-4 border-l border-green-500'><p className='rotate-90 mt-10  text-red-500 text-2xl'>secondary</p></div>
@@ -54,7 +53,7 @@ function page() {
       </div>
       <div>
         <CardB beOnShadow={false} />
-        <CustomCardB beOnShadow={true} />
+        {/* <CustomCardB beOnShadow={true} /> */}
         <SkeletonCard />
       </div>
       

@@ -11,7 +11,7 @@ export const DotButton: React.FC<DotButtonPropType> = (props) => {
 
   return (
     <button
-      className={'embla__dot'.concat(selected ? ' embla__dot--selected' : '')}
+      className={'embla__dot w-3 md:w-10 '.concat(selected ? ' embla__dot--selected' : '')}
       type="button"
       onClick={onClick}
     />

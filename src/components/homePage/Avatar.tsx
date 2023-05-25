@@ -38,23 +38,24 @@ const items = [
 ]
 function Avatar() {
   return (
-    <div className="relative -mt-7 flex flex-nowrap items-center justify-center  overflow-y-hidden overflow-x-scroll scrollbar-hide ">
+    <div className="relative z-0 -mt-7 flex  items-center justify-center   ">
       <div className="absolute left-1/2 top-0 flex aspect-square w-1/3 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
         <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-50 blur-[120px]" />
       </div>
-      <div className="flex gap-5 p-10">
+      <div className="flex gap-5 p-10 flex-nowrap overflow-y-hidden overflow-x-scroll scrollbar-hide">
         {items.map((item) => (
           <div style={{ zIndex: "20" }} className="">
             <div className="w-3h-40 flex h-40 items-center  justify-center">
               {/* <div className=" h-32 w-32 rounded-full bg-foreground "> */}
-              <div className="relative h-32  w-32 rounded-full bg-foreground ">
+              <div className="relative h-24 w-24 md:h-32  md:w-32 rounded-full bg-foreground ">
                 <Image
-                  className="absolute -bottom-1 opacity-0 transition-opacity duration-200  "
+                  // className="absolute -bottom-1 opacity-0 transition-opacity duration-200  "
+                  className="absolute -bottom-1  "
                   src={item.image}
                   alt=""
-                  onLoadingComplete={(image) =>
-                    image.classList.remove("opacity-0")
-                  }
+                  // onLoadingComplete={(image) =>
+                  //   image.classList.remove("opacity-0")
+                  // }
                 />
               </div>
               {/* </div> */}

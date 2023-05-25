@@ -5,7 +5,7 @@ import Login from "./Login"
 
 function Navbar() {
   return (
-    <div style={{zIndex: "50"}} className="">
+    <div className="navbar">
       <div
         className={` fixed top-0 flex h-16 w-[100%] items-center justify-between bg-muted-foreground px-5 font-bold`}
       >

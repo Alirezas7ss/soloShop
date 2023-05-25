@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -54,7 +54,7 @@ model User {
   address       String?
   reservation Reservation[]
   accounts Account[]
-  productsList ProductList[]
+  // productsList ProductList[]
   sessions Session[]
   Post     Post[]
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
@@ -91,20 +91,17 @@ model ProductList {
   id    String @id @default(cuid())
   title String
   description String
-  imageSrc String
+  imageSrc String[]
   createdAt DateTime @default(now())
   category  String
-  roomCount Int
-  bathroomCount Int
-  guestCount Int
   locationValue String
   userId String 
   price Int
+  discount Int
   point Int
   reservation Reservation[]
-  product User @relation(fields: [userId], references: [id] )
+  // product User @relation(fields: [userId], references: [id] )
   @@map(name: "productsList")
-//   reservations Reservation[]
 }
 
 model Reservation {

@@ -15,7 +15,7 @@ function HamburgerMenu() {
       {/* {showSide ? <button onClick={clickHandler}>close</button> :
          <button onClick={clickHandler}>menu</button>
       } */}
-       <button className={`${showSide && 'cross'} menu-button  `} onClick={clickHandler} >
+       <button className={`${showSide && 'cross rotate-90'} menu-button  `} onClick={clickHandler} >
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
