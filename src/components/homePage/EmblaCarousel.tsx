@@ -59,7 +59,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
 
   return (
     <div className='relative'>
-      <div className="embla md:px-7 md:pb-7 md:-mt-4 ">
+      <div className="embla md:px-7 md:pb-7  ">
         <div className="embla__viewport" ref={emblaRef}>
           <div className="embla__container">
             {images.map((item ,index) => (

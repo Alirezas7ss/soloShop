@@ -1,4 +1,4 @@
-import { Inter as FontSans } from "next/font/google"
+// import { Inter as FontSans } from "next/font/google"
 import localFont from "next/font/local"
 
 import "./globals.css"
@@ -10,11 +10,12 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/homePage/Navbar"
 import Sidebar from "@/components/homePage/Sidebar"
+import { ClerkProvider } from "@clerk/nextjs"
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
+// const fontSans = FontSans({
+//   subsets: ["latin"],
+//   variable: "--font-sans",
+// })
 
 // Font files can be colocated inside of `pages`
 // const fontHeading = localFont({
@@ -88,14 +89,16 @@ export const metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({  children }: RootLayoutProps) {
   return (
-    <html lang="fa" dir='rtl' suppressHydrationWarning>
+    <html lang="fa" 
+    dir='rtl'
+     suppressHydrationWarning>
       <head />
       <body
         className={cn(
           "min-h-screen bg-background font-base antialiased relative",
-          fontSans.variable,
+          // fontSans.variable,
           fontHeading.variable,
           fontSemiHeading.variable,
           fontMedium.variable,
@@ -103,9 +106,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <Sidebar />
-          {children}
+          <ClerkProvider>{children}</ClerkProvider>
+          
           <Analytics />
           <Toaster />
           <TailwindIndicator />

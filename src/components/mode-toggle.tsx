@@ -7,7 +7,7 @@ import { useTheme } from "next-themes"
 export default function ModeToggle() {
   const { setTheme } = useTheme()
   return (
-    <div className="flex min-h-full items-center justify-center">
+    <div className=" z-50 flex min-h-full items-center justify-center">
         <header className=" p-2">
           <Dropdown>
             <Dropdown.Button>
@@ -18,9 +18,9 @@ export default function ModeToggle() {
         </Button>
             </Dropdown.Button>
 
-            <Dropdown.Menu>
-              <Dropdown.MenuItem  onSelect={() => setTheme("light")}>
-              <div className="flex">
+            <Dropdown.Menu >
+              <Dropdown.MenuItem   onSelect={() => setTheme("light")}>
+              <div className="flex ">
                   <Icons.sun className="mr-2 h-4 w-4" />
                             <span>Light</span>
               </div>

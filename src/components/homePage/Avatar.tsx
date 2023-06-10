@@ -38,8 +38,8 @@ const items = [
 ]
 function Avatar() {
   return (
-    <div className="relative z-0 -mt-7 flex  items-center justify-center   ">
-      <div className="absolute left-1/2 top-0 flex aspect-square w-1/3 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+    <div className="relative  z-0 -mt-7 flex  items-center justify-center   ">
+      <div className="  absolute left-1/2 top-0 flex aspect-square w-1/3 -translate-x-1/2 -translate-y-1/2 items-center justify-center">
         <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-50 blur-[120px]" />
       </div>
       <div className="flex gap-5 p-10 flex-nowrap overflow-y-hidden overflow-x-scroll scrollbar-hide">

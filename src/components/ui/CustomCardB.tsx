@@ -12,28 +12,47 @@ interface Props {
 function CustomCardB({ beOnShadow, product }: Props) {
   return (
     <div>
-      <div className="relative flex mt-10  flex-col justify-center ">
+      <div className="relative mt-10 flex  flex-col justify-center ">
         <div className="group relative mx-auto rounded-lg  bg-custom-vc-border-gradient p-px  shadow-lg shadow-black/20 dark:bg-vc-border-gradient ">
-          <div className="group  relative z-20 m-[1px] h-[350px] w-40  max-w-md overflow-hidden rounded-md  bg-background p-[2px]">
-              <Image className="rounded-t-lg " alt="" width={160} height={100} src={`${product.imageSrc[0]}`} />
+          <div className="group  relative z-20 m-[1px] h-[350px]  w-40  max-w-md overflow-hidden rounded-md  bg-background p-[2px]">
+            <div className="h-[230px] w-full rounded-t-lg bg-slate-300">
+              <Image
+                className="rounded-t-lg "
+                width={160}
+                height={230}
+                alt=""
+                src={`${product.imageSrc[0]}`}
+              />
+            </div>
             <div className="mx-2 mt-3  ">
-              <p className="   ">{product.title}</p>
+              <div className="  h-[1px] bg-custom-gradient " />
+              <p className=" my-1  ">{product.title}</p>
               <div dir="ltr" className="space-y-2 text-sm">
-                <div className="flex items-center space-x-3">
-                  <Star />
-                  <p className="flex items-center">{product.point}</p>{" "}
+                <div className="flex items-center  space-x-3">
+                  <Star className="h-4 w-4" />
+                  <p className="ml-24 flex items-center text-sm ">
+                    {product.point}
+                  </p>{" "}
                 </div>
                 <div className="">
                   <div className="flex justify-between ">
                     <div>
-                      {(product.price *
-                        ((100 - product.discount) / 100)).toLocaleString()}
+                      {(
+                        product.price *
+                        ((100 - product.discount) / 100)
+                      ).toLocaleString()}
                     </div>
-                    <div className="mr-1  bg-gradient-to-r from-[--brand-primary] font-bold  text-background to-[--brand-secondary] flex items-center justify-center px-2 py-[2px] rounded-lg -mb-[5px]">{product.discount}%</div>
+                    {product.discount > 0 && (
+                      <div className="-mb-[5px]  mr-1 flex items-center  justify-center rounded-lg bg-gradient-to-r from-[--brand-primary] to-[--brand-secondary] px-2 py-[2px] font-bold text-background">
+                        {product.discount}%
+                      </div>
+                    )}
                   </div>
-                  <div className="flex line-through items-center text-xs text-slate-500">
-                    {product.price.toLocaleString()}
-                  </div>
+                  {product.discount > 0 && (
+                    <div className="flex items-center text-xs text-slate-500 line-through">
+                      {product.price.toLocaleString()}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

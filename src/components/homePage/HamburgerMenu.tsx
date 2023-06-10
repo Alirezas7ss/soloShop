@@ -7,7 +7,7 @@ function HamburgerMenu() {
   const setShowSidebar = showSidebar((state) => state.setShowSidebar)
   function clickHandler(){
     setShowSidebar(!showSide)
-    console.log(showSide)
+    // console.log(showSide)
   }
   
   return (

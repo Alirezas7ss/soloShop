@@ -1,11 +1,11 @@
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const { fontFamily } = require("tailwindcss/defaultTheme")
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -53,12 +53,7 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
-      backgroundImage: {
-        "card-shine":
-          "radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%)",
-        "border-shine":
-          "radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.4), transparent 40%)",
-      },
+      
       backgroundImage: ({ theme }) => ({
         "vc-border-gradient": `radial-gradient(at left top, ${theme(
           "colors.gray.500"
@@ -66,13 +61,25 @@ module.exports = {
         "custom-vc-border-gradient": `radial-gradient(at left top, ${theme(
           "colors.gray.800"
         )}, 50px, ${theme("colors.gray.500")} 50%)`,
-     
+        "light-custom-gradient":
+          "linear-gradient(90deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.50) 25%, rgba(0, 0, 0, 0.02) 100%)",
+          "light-custom-y-gradient":
+          "linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.50) 25%, rgba(0, 0, 0, 0.02) 90%)",
+        "custom-gradient":
+          "linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.18) 25%, rgba(255, 255, 255, 0.02) 100%)",
+          "custom-gradient":
+          "linear-gradient(90deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.18) 25%, rgba(255, 255, 255, 0.02) 100%)",
+          "custom-y-gradient":
+          "linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.18) 25%, rgba(255, 255, 255, 0.02) 90%)",
+          "card-shine":
+          "radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%)",
+        "border-shine":
+          "radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.4), transparent 40%)",
       }),
       borderRadius: {
         lg: `var(--radius)`,
         md: `calc(var(--radius) - 2px)`,
         sm: "calc(var(--radius) - 4px)",
-      
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
@@ -106,5 +113,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate") , require('tailwind-scrollbar-hide')],
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar-hide")],
 }
