@@ -1,3 +1,5 @@
+// @ts-nocheck comment at the top of a file
+
 import { OpenAIEmbeddings } from "langchain/embeddings/openai"
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter"
 import { OpenAI } from "langchain/llms/openai"

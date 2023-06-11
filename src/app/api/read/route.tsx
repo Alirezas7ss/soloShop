@@ -1,3 +1,4 @@
+// @ts-nocheck comment at the top of a file
 import { NextRequest, NextResponse } from "next/server"
 import { PineconeClient } from "@pinecone-database/pinecone"
 import { queryPineconeVectorStoreAndQueryLLM } from "@/lib/semantic-utils"

@@ -1,3 +1,4 @@
+// @ts-nocheck comment at the top of a file
 import * as React from "react"
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"

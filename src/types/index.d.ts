@@ -10,13 +10,13 @@ export type SiteConfig = {
   }
 
   export type ProductList = {
-    id:    String 
-    title: String
-    description: String
-    imageSrc: String[]
+    id:    string 
+    title: string
+    description: string
+    imageSrc: string[]
     createdAt: DateTime 
-    category:  String
-    userId: String 
+    category:  string
+    userId: string 
     price: Int
     discount: Int
     point: Int

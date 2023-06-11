@@ -4,7 +4,7 @@ import SearchInput from "./SearchInput"
 import { ProductList } from "@/types"
 import SearchCard from "./SearchCard"
 import Link from "next/link"
-import { useEffect, useRef, useState, useTransition } from "react"
+import { useCallback, useEffect, useRef, useState, useTransition } from "react"
 import useSWR from "swr"
 import { useRouter } from "next/navigation"
 // import { MOVIE_DATA, Movie } from "@/movies-data"
@@ -15,6 +15,8 @@ import { showSidebar } from "@/store/store"
 // let products: ProductList[] = []
 let searchQuery: String = ""
 const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(-1)
+  const [numOfSearchResults, setNumOfSearchResults] = useState<number>(0)
   const [inputValue, setInputValue] = useState<string>("")
   const [debouncedValue, setDebouncedValue] = useState<string>("")
   const [initialProducts, setProducts] = useState<ProductList[]>([])
@@ -25,14 +27,17 @@ const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
   const refOut = useClickOutside(() => setOpened(false))
   const router = useRouter()
   const setShowSidebar = showSidebar((state) => state.setShowSidebar)
-
+  const handleInputFocus = () => {
+    setOpened(true)
+    setSelectedItemIndex(-1)
+  }
   // OnSubmit Handler
   const onSubmitHandler = () => {
-    router.replace(`/products?search=${inputValue}`)
+    // router.replace(`/products?search=${inputValue}`)
   }
   const productClickHandler = () => {
     setInputValue("")
-    setShowSidebar(false)
+    // setShowSidebar(false)
   }
   // Fetcher
   const fetcher = async (query: string) => {
@@ -53,22 +58,20 @@ const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
 
   // EFFECTS: Set Data
   useEffect(() => {
+    // ...
+  
     // If search is active, set movies to search results
     if (debouncedValue.length > 0) {
-      fetcher(inputValue)
-      // If there is a result, set movies to result
-      if (initialProducts) {
-        setProducts(initialProducts)
-      }
-      // If there is no result, set movies to empty array
-      else {
-        setProducts([])
-      }
-      // If search is not active, set movies to initial data
+      fetcher(inputValue).then((res) => {
+        setProducts(res.data);
+        setNumOfSearchResults(res.data.length); // Add this line to update the number of search results
+      });
+      // ...
     } else {
-      setProducts([])
+      // ...
+      setNumOfSearchResults(0); // Add this line to reset the number of search results
     }
-  }, [debouncedValue])
+  }, [debouncedValue]);
 
   // EFFECT: Debounce Input Value
   useEffect(() => {
@@ -80,6 +83,38 @@ const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
       clearTimeout(timer)
     }
   }, [inputValue])
+  const handleKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        setSelectedItemIndex((prevIndex) =>
+          prevIndex > 0 ? prevIndex - 1 : numOfSearchResults - 1
+        );
+      } else if (event.key === "ArrowDown") {
+        event.preventDefault();
+        setSelectedItemIndex((prevIndex) =>
+          prevIndex < numOfSearchResults - 1 ? prevIndex + 1 : 0
+        );
+      } else if (selectedItemIndex !== -1 && event.key === "Enter") {
+        // Add this block of code to handle Enter key press
+        event.preventDefault();
+        const selectedProduct = initialProducts[selectedItemIndex];
+        if (selectedProduct) {
+          setInputValue("");
+          // setShowSidebar(false);
+          router.push(
+            `/products/${selectedProduct.id}/${replaceSpacesWithHyphens(
+              selectedProduct.title
+            )}`
+          );
+        }
+      } else if (selectedItemIndex == -1 && event.key === "Enter") {
+        router.push(`/products/?search=${inputValue}`)
+      }
+    },
+    
+    [numOfSearchResults, selectedItemIndex]
+  );
   const threeProduct = initialProducts.slice(0, 3)
 
   return (
@@ -91,6 +126,11 @@ const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
         onSubmitHandler={onSubmitHandler}
         isHandling={isLoading}
         setOpened={setOpened}
+        selectedItemIndex={selectedItemIndex}
+        setSelectedItemIndex={setSelectedItemIndex}
+        numOfSearchResults={numOfSearchResults}
+        setNumOfSearchResults={setNumOfSearchResults}
+        handleKeyDown={handleKeyDown}
       />
       {/* Producs */}
       {isLoading && (
@@ -110,8 +150,11 @@ const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
                 href={`/products/${product.id}/${replaceSpacesWithHyphens(
                   product.title
                 )}`}
+                onMouseEnter={() => setSelectedItemIndex(-1)}
               >
-                <SearchCard product={product} />
+                <SearchCard  
+                isSelected={index === selectedItemIndex}
+                product={product} />
               </Link>
               {index === 2 && (
                 <div

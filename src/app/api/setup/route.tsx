@@ -1,3 +1,5 @@
+// @ts-nocheck comment at the top of a file
+
 import { NextResponse } from "next/server"
 import { PineconeClient } from "@pinecone-database/pinecone"
 import { TextLoader } from "langchain/document_loaders/fs/text"

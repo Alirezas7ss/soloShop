@@ -8,7 +8,7 @@ interface Props {
 function CardProduct({ product }: Props) {
   return (
     <div className="  group relative h-[500px] w-[300px]  ">
-      <div className="duration-[2s] transition-all ease-in-out mr-[50%] h-[1px]  w-[70%] translate-x-[50%] bg-light-custom-gradient group-hover:w-full dark:bg-custom-gradient " />
+      <div className="duration-1000 transition-all ease-in-out mr-[50%] h-[1px]  w-[70%] translate-x-[50%] bg-light-custom-gradient group-hover:w-full dark:bg-custom-gradient " />
       {/* <div className="absolute hidden group-hover:flex rounded-bl-full rounded-br-full  top-0 overflow-hidden  aspect-square w-full h-1/3  items-center justify-center">
         <div className="translate-z-0 absolute inset-0 bg-custom-gradient opacity-50 blur-[120px]" />
       </div> */}

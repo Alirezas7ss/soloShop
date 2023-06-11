@@ -6,7 +6,7 @@ import React from "react"
 function SkeletonCardProducts() {
   return (
     <div className="  group relative h-[500px] w-[300px]  ">
-      <div className="duration-[2s] transition-all ease-in-out mr-[50%] h-[1px]  w-[70%] translate-x-[50%] bg-light-custom-gradient  dark:bg-custom-gradient " />
+      <div className="duration-1000 transition-all ease-in-out mr-[50%] h-[1px]  w-[70%] translate-x-[50%] bg-light-custom-gradient  dark:bg-custom-gradient " />
       
       <div className="absolute left-1/2 top-0 hidden aspect-square w-1/3 -translate-x-1/2 translate-y-1/2 items-center justify-center ">
         <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-60 blur-[120px]" />

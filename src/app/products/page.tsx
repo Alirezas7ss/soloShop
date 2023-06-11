@@ -45,14 +45,20 @@ async function page({
   else {
     products = allProducts ?? []
   }
-  return ( 
+  return (
     <div>
-          <Navbar pathRevalidate={pathRevalidate} />
-          <Sidebar />
-      <div className=" pt-24 px-[10%] ">
+      <Navbar pathRevalidate={pathRevalidate} />
+      <Sidebar />
+      <div className=" px-[10%] pt-24 ">
         <div className="flex flex-wrap ">
           {products.map((product, index) => (
-            <Link href={`/products/${product.id}/${replaceSpacesWithHyphens(product.title)}`} className="" key={index}>
+            <Link
+              href={`/products/${product.id}/${replaceSpacesWithHyphens(
+                product.title
+              )}`}
+              className=""
+              key={index}
+            >
               <CardProduct product={product} />
             </Link>
           ))}

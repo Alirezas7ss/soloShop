@@ -2,10 +2,13 @@
 
 import {
   ChangeEvent,
+  Dispatch,
+  SetStateAction,
   useCallback,
   useEffect,
   useState,
   useTransition,
+  
 } from "react"
 import debounce from "lodash.debounce"
 import { Input } from "./ui/input"
@@ -16,6 +19,11 @@ interface Props {
   setOpened: (value: boolean) => void
   isHandling?: boolean
   onSubmitHandler: () => void
+  selectedItemIndex: number
+  setSelectedItemIndex: Dispatch<SetStateAction<number>>
+  setNumOfSearchResults: Dispatch<SetStateAction<number>>
+  numOfSearchResults: number
+  handleKeyDown: any
 }
 
 const SearchInput = ({
@@ -24,10 +32,17 @@ const SearchInput = ({
   setOpened,
   isHandling,
   onSubmitHandler,
+  selectedItemIndex,
+  setSelectedItemIndex,
+  setNumOfSearchResults,
+  numOfSearchResults,
+  handleKeyDown
+
 }: Props) => {
   const handleInputFocus = () => {
     setOpened(true)
   }
+  
   return (
     <form className="relative " onSubmit={onSubmitHandler}>
       {/* <div className="absolute top-2 right-2">
@@ -39,6 +54,7 @@ const SearchInput = ({
           setInputValue(e.target.value)
         }}
         onFocus={handleInputFocus}
+        onKeyDown={handleKeyDown}
         placeholder="جستوجو ..."
         className="w-[350px] text-base placeholder:text-slate-200 lg:w-[450px]"
       />
