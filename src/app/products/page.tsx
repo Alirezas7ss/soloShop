@@ -52,15 +52,15 @@ async function page({
       <div className=" px-[10%] pt-24 ">
         <div className="flex flex-wrap ">
           {products.map((product, index) => (
-            <Link
-              href={`/products/${product.id}/${replaceSpacesWithHyphens(
-                product.title
-              )}`}
-              className=""
-              key={index}
-            >
+            // <Link
+            //   href={`/products/${product.id}/${replaceSpacesWithHyphens(
+            //     product.title
+            //   )}`}
+            //   className=""
+            //   key={index}
+            // >
               <CardProduct product={product} />
-            </Link>
+            // </Link>
           ))}
         </div>
       </div>

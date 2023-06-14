@@ -33,7 +33,7 @@ const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
   }
   // OnSubmit Handler
   const onSubmitHandler = () => {
-    // router.replace(`/products?search=${inputValue}`)
+    router.replace(`/products?search=${inputValue}`)
   }
   const productClickHandler = () => {
     setInputValue("")
