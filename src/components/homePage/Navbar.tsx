@@ -32,7 +32,7 @@ function Navbar({
   return (
     <div ref={refOut} className="navbar z-50 flex-col ">
       <div
-        className={` absolute  top-0 flex h-16 w-[100%] items-center justify-between bg-muted-foreground  px-5 font-bold`}
+        className={` absolute  top-0 flex h-16 w-[100%] items-center justify-between bg-muted-foreground/40 bg-blur-sm  px-5 font-bold`}
       >
         <div className="item-center  flex gap-8">
           <div>

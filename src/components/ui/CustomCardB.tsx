@@ -4,6 +4,9 @@ import React from "react"
 import testImage from "/public/avatar/testcardimage.jpg"
 import { Star } from "lucide-react"
 import { ProductList } from "@/types"
+import AddButton from "../productsPage/AddButton"
+import replaceSpacesWithHyphens from "@/script/script"
+import Link from "next/link"
 
 interface Props {
   beOnShadow: boolean
@@ -14,7 +17,7 @@ function CustomCardB({ beOnShadow, product }: Props) {
     <div>
       <div className="relative mt-10 flex  flex-col justify-center ">
         <div className="group relative mx-auto rounded-lg  bg-custom-vc-border-gradient p-px  shadow-lg shadow-black/20 dark:bg-vc-border-gradient ">
-          <div className="group  relative z-20 m-[1px] h-[350px]  w-40  max-w-md overflow-hidden rounded-md  bg-background p-[2px]">
+          <div className="group  relative z-20 m-[1px] h-[370px]  w-40  max-w-md overflow-hidden rounded-md  bg-background p-[2px]">
             <div className="h-[230px] w-full rounded-t-lg bg-slate-300">
               <Image
                 className="rounded-t-lg "
@@ -24,8 +27,9 @@ function CustomCardB({ beOnShadow, product }: Props) {
                 src={`${product.imageSrc[0]}`}
               />
             </div>
-            <div className="mx-2 mt-3  ">
+            <div className="relative mx-2 mt-3 space-y-2 ">
               <div className="  h-[1px] bg-custom-gradient " />
+
               <p className=" my-1  ">{product.title}</p>
               <div dir="ltr" className="space-y-2 text-sm">
                 <div className="flex items-center  space-x-3">
@@ -60,6 +64,17 @@ function CustomCardB({ beOnShadow, product }: Props) {
               <div className="absolute inset-0 -translate-x-full bg-transparent bg-gradient-to-r from-transparent via-gray-600/20 bg-clip-border group-hover:translate-x-full group-hover:transition group-hover:duration-1000" />
             )}
           </div>
+        </div>
+        <Link
+          href={`/products/${product.id}/${replaceSpacesWithHyphens(
+            product.title
+          )}`}
+          className="absolute inset-0 z-20"
+        >
+          <span className="sr-only">View Product</span>
+        </Link>
+        <div className="absolute z-30 mt-[220px] mr-4">
+          <AddButton />
         </div>
       </div>
     </div>

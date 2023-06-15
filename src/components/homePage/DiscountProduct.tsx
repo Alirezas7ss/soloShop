@@ -31,9 +31,7 @@ async function DiscountProduct() {
       {/* <Suspense fallback={<SkeletonDiscount />}> */}
         {products.map((product, index) => (
           <div key={product.id}>
-            <Link href={`/products/${product.id}/${replaceSpacesWithHyphens(product.title)}`}>
             <CustomCardB product={product} beOnShadow={true} />
-            </Link>
           </div>
         ))}
       {/* </Suspense> */}
