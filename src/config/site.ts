@@ -4,10 +4,10 @@ export const siteConfig: SiteConfig = {
   name: "solop-shop",
   description:
     "An open source application built using the new router, server components and everything new in Next.js 13.",
-  url: "https://tx.shadcn.com",
-  ogImage: "https://tx.shadcn.com/og.jpg",
+  url: "https://solo-shop.vercel.app/products",
+  ogImage: "/image/opengraph-image.jpg",
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/taxonomy",
+    twitter: "https://twitter.com/sus6461",
+    github: "https://github.com/Alirezas7ss",
   },
 }
