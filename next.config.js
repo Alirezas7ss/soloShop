@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: "cdn.suitdirect.co.uk",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+      },
     ],
   },
 }

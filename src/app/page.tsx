@@ -5,6 +5,7 @@ import Avatar from "@/components/homePage/Avatar"
 import Banner from "@/components/homePage/Banner"
 import Describe from "@/components/homePage/Describe"
 import DiscountProduct from "@/components/homePage/DiscountProduct"
+import Login from "@/components/homePage/Login"
 import Navbar from "@/components/homePage/Navbar"
 import Sidebar from "@/components/homePage/Sidebar"
 import SkeletonDiscount from "@/components/homePage/SkeletonDiscount"
@@ -19,7 +20,6 @@ export default async function Home({
 }: {
   searchParams: { path?: string }
 }) {
-  
   const pathRevalidate = searchParams?.path || "/"
 
   async function getProduct() {
@@ -44,7 +44,11 @@ export default async function Home({
   const product = await getProduct()
   return (
     <main>
-      <Navbar pathRevalidate={pathRevalidate} />
+      <Navbar pathRevalidate={pathRevalidate}>
+        {/* @ts-expect-error Server Component */}
+
+        <Login />
+      </Navbar>
       <Sidebar />
       <div className="z-0 pt-16 ">
         <div className="">
@@ -68,7 +72,7 @@ export default async function Home({
           <Describe />
         </div>
         <div>
-              {/* @ts-expect-error Server Component */}
+          {/* @ts-expect-error Server Component */}
           <BlogHome />
         </div>
       </div>
