@@ -47,7 +47,10 @@ async function page({
   }
   return (
     <div>
-      <Navbar pathRevalidate={pathRevalidate} />
+      <Navbar pathRevalidate={pathRevalidate}>
+        {/* @ts-expect-error Server Component */}
+        <Login />
+      </Navbar>
       <Sidebar />
       <div className=" px-[10%] pt-24 ">
         <div className="flex flex-wrap ">
@@ -59,7 +62,7 @@ async function page({
             //   className=""
             //   key={index}
             // >
-              <CardProduct product={product} />
+            <CardProduct product={product} />
             // </Link>
           ))}
         </div>
