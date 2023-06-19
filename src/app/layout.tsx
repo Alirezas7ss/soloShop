@@ -10,7 +10,6 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/homePage/Navbar"
 import Sidebar from "@/components/homePage/Sidebar"
-import { ClerkProvider } from "@clerk/nextjs"
 
 // const fontSans = FontSans({
 //   subsets: ["latin"],
@@ -23,21 +22,21 @@ import { ClerkProvider } from "@clerk/nextjs"
 //   variable: "--font-heading",
 // })
 const fontBase = localFont({
-  src: '../assets/fonts/IRANSansWebFaNum-Light.woff2',
+  src: "../assets/fonts/IRANSansWebFaNum-Light.woff2",
   variable: "--font-base",
-});
+})
 const fontMedium = localFont({
-  src: '../assets/fonts/IRANSansWebFaNum-Medium.woff2',
+  src: "../assets/fonts/IRANSansWebFaNum-Medium.woff2",
   variable: "--font-medium",
-});
+})
 const fontHeading = localFont({
-  src: '../assets/fonts/woff2/KalamehWebFaNum-Bold.woff2',
+  src: "../assets/fonts/woff2/KalamehWebFaNum-Bold.woff2",
   variable: "--font-semiHeading",
-});
+})
 const fontSemiHeading = localFont({
-  src: '../assets/fonts/IRANSansWebFaNum-Light.woff2',
+  src: "../assets/fonts/IRANSansWebFaNum-Light.woff2",
   variable: "--font-heading",
-});
+})
 interface RootLayoutProps {
   children: React.ReactNode
 }
@@ -89,25 +88,23 @@ export const metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
-export default function RootLayout({  children }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="fa" 
-    dir='rtl'
-     suppressHydrationWarning>
+    <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-base antialiased relative",
+          "relative min-h-screen bg-background font-base antialiased",
           // fontSans.variable,
           fontHeading.variable,
           fontSemiHeading.variable,
           fontMedium.variable,
-          fontBase.variable,
+          fontBase.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ClerkProvider>{children}</ClerkProvider>
-          
+          {children}
+
           <Analytics />
           <Toaster />
           <TailwindIndicator />
