@@ -4,6 +4,7 @@ import { showSidebar } from "@/store/store"
 import { AnimatePresence, motion } from "framer-motion"
 import { useMediaQuery } from "@mantine/hooks"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 const items = [
   {
     id: "1",
@@ -82,7 +83,7 @@ const backOpacity = {
 function Sidebar() {
   const showSide = showSidebar((state) => state.showSidebar)
   const setShowSide = showSidebar((state) => state.setShowSidebar)
-  
+  const pathname = usePathname()
   function closeHandler() {
     setShowSide(!showSide)
   }
@@ -100,6 +101,11 @@ function Sidebar() {
       document.body.style.overflow = "";
     };
   }, [showSide]);
+  useEffect(() => {
+    if (showSide) {
+      setShowSide(false)
+    }
+  }, [pathname]);
   return (
     <AnimatePresence>
       {showSide && (

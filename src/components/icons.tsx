@@ -6,6 +6,9 @@ import {
   SunMedium,
   Plus,
   Minus,
+  Eye,
+  EyeOff,
+  Loader2,
   User,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -20,6 +23,9 @@ export const Icons = {
   plus: Plus,
   minus: Minus,
   user: User,
+  view: Eye,
+  hide: EyeOff,
+  spinner: Loader2,
   youtube: (props: LucideProps) => (
     <svg
       {...props}

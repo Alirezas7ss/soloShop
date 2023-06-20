@@ -13,7 +13,7 @@ import InputForm from "../ui/InputForm"
 import { Button } from "../ui/button"
 import { PasswordInput } from "../ui/password-input"
 
-const SignIn = () => {
+const SignUp = () => {
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -29,7 +29,7 @@ const SignIn = () => {
             <Icons.logosolop className="w-16 rounded-md bg-accent" />
           </Link>
         </div>
-        <h1 className="text-2xl font-semibold tracking-tight">خوش برگشتی</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">خوش آمدی</h1>
       </div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -38,7 +38,7 @@ const SignIn = () => {
             placeholder="نام کاربری را وارد کنید"
             control={form.control}
           />
-
+ 
           <InputForm
             type="pass"
             name="رمز"
@@ -50,16 +50,16 @@ const SignIn = () => {
       </Form>
       <UserAuthForm />
       <p className="px-8 text-center text-sm text-muted-foreground">
-        New to Solop?{" "}
+        is member Solop?{" "}
         <Link
-          href="/sign-up"
+          href="/sign-in"
           className="hover:text-brand text-sm underline underline-offset-4"
         >
-          Sign Up
+          Sign In
         </Link>
       </p>
     </div>
   )
 }
 
-export default SignIn
+export default SignUp

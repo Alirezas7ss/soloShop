@@ -10,7 +10,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/homePage/Navbar"
 import Sidebar from "@/components/homePage/Sidebar"
-
+import { ClerkProvider } from "@clerk/nextjs"
 // const fontSans = FontSans({
 //   subsets: ["latin"],
 //   variable: "--font-sans",
@@ -92,24 +92,25 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head />
-      <body
-        className={cn(
-          "relative min-h-screen bg-background font-base antialiased",
-          // fontSans.variable,
-          fontHeading.variable,
-          fontSemiHeading.variable,
-          fontMedium.variable,
-          fontBase.variable
-        )}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
-
-          <Analytics />
-          <Toaster />
-          <TailwindIndicator />
-        </ThemeProvider>
-      </body>
+      <ClerkProvider>
+        <body
+          className={cn(
+            "relative min-h-screen bg-background font-base antialiased",
+            // fontSans.variable,
+            fontHeading.variable,
+            fontSemiHeading.variable,
+            fontMedium.variable,
+            fontBase.variable
+          )}
+        >
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+            <Analytics />
+            <Toaster />
+            <TailwindIndicator />
+          </ThemeProvider>
+        </body>
+      </ClerkProvider>
     </html>
   )
 }

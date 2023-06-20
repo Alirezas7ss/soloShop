@@ -73,7 +73,7 @@ function CustomCardB({ beOnShadow, product }: Props) {
         >
           <span className="sr-only">View Product</span>
         </Link>
-        <div className="absolute z-30 mt-[220px] mr-4">
+        <div dir='ltr' className="absolute z-30 mt-[220px] mr-4">
           <AddButton />
         </div>
       </div>

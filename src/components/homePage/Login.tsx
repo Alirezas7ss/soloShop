@@ -11,9 +11,11 @@ async function Login() {
   const session = await getServerSession(authOptions)
   console.log(session)
   return (
-    <div className="mt-2">
+    <div className="">
       {session?.user ? (
-        <UserAccountNav user={session.user} />
+        <div className="mt-2">
+          <UserAccountNav user={session.user} />
+        </div>
       ) : (
         <Link
           href="/sign-in"
