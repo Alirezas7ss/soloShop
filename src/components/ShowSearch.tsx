@@ -13,7 +13,7 @@ import replaceSpacesWithHyphens from "@/script/script"
 import { showSidebar } from "@/store/store"
 // let products: ProductList[] = []
 let searchQuery: String = ""
-const ShowSearch = ({ pathRevalidate }: { pathRevalidate: string }) => {
+const ShowSearch = () => {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(-1)
   const [numOfSearchResults, setNumOfSearchResults] = useState<number>(0)
   const [inputValue, setInputValue] = useState<string>("")

@@ -3,7 +3,7 @@ import localFont from "next/font/local"
 
 import "./globals.css"
 import { siteConfig } from "@/config/site"
-import { absoluteUrl, cn } from "@/lib/utils"
+import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { Analytics } from "@/components/analytics"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
@@ -88,7 +88,13 @@ export const metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({
+  children,
+  authModal,
+}: {
+  children: React.ReactNode
+  authModal: React.ReactNode
+}) {
   return (
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head />
@@ -104,6 +110,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {authModal}
+
             {children}
             <Analytics />
             <Toaster />

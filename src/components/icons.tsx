@@ -9,6 +9,7 @@ import {
   Eye,
   EyeOff,
   Loader2,
+  AlertTriangle,
   User,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -16,6 +17,7 @@ import {
 export type Icon = LucideIcon
 
 export const Icons = {
+  warning: AlertTriangle,
   sun: SunMedium,
   moon: Moon,
   chevronLeft: ChevronLeft,

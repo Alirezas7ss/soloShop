@@ -6,7 +6,7 @@ function Backdrop() {
     const pathName = usePathname()
     useEffect(() => {
         // Add styles to prevent scrolling when the sidebar is open
-        if (pathName.includes('sign-in')) {
+        if (pathName.includes('sign-in') || pathName.includes('sign-up')) {
           document.body.style.overflow = "hidden";
         } else {
           document.body.style.overflow = "";

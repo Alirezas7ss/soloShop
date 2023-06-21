@@ -1,3 +1,11 @@
+export type SidebarNavItem = NavItemWithChildren
+export type SubscriptionPlan = {
+  name: string
+  description: string
+  stripePriceId: string
+  monthlyPrice?: number | null
+}
+
 export type SiteConfig = {
     name: string
     description: string

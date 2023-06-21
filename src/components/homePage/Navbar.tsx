@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/accordion"
 import SearchModal from "../SearchModal"
 import Link from "next/link"
-function Navbar({ pathRevalidate , children }: { pathRevalidate: string , children: React.ReactNode }) {
+function Navbar({  children }: { children: React.ReactNode }) {
   const [showSearch, setShowSearch] = useState(false)
   function showMobileSearch() {
     setShowSearch(!showSearch)
@@ -52,7 +52,7 @@ function Navbar({ pathRevalidate , children }: { pathRevalidate: string , childr
           </Button>
 
           <div className="hidden md:flex ">
-            <ShowSearch pathRevalidate={pathRevalidate} />
+            <ShowSearch  />
           </div>
         </div>
         <div className="flex">
@@ -64,7 +64,7 @@ function Navbar({ pathRevalidate , children }: { pathRevalidate: string , childr
         <div className=" absolute top-16 z-50 flex w-[100%] animate-accordion-down items-center justify-center transition-all duration-100 md:hidden">
           <div className="flex h-16 w-[400px] items-center justify-center rounded-b-xl bg-muted-foreground">
             <div className="">
-              <ShowSearch pathRevalidate={pathRevalidate} />
+              <ShowSearch  />
             </div>
           </div>
         </div>

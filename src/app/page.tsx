@@ -1,6 +1,5 @@
 import NavSpotlight from "@/components/NavSpotlight"
 import { FancyBox } from "@/components/fancy-box"
-import { FileInput } from "@/components/file-input"
 import Avatar from "@/components/homePage/Avatar"
 import Banner from "@/components/homePage/Banner"
 import Describe from "@/components/homePage/Describe"
@@ -44,7 +43,7 @@ export default async function Home({
   const product = await getProduct()
   return (
     <main>
-      <Navbar pathRevalidate={pathRevalidate}>
+      <Navbar >
         {/* @ts-expect-error Server Component */}
 
         <Login />

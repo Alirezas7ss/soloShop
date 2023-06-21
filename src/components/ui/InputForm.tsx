@@ -29,10 +29,10 @@ function InputForm({ type , name, placeholder, control }: Props) {
           <FormControl>
            
           { type === 'pass' ?
-          <PasswordInput placeholder="*********" {...field} />
+          <PasswordInput dir='ltr' placeholder="*********" {...field} />
           
         :
-        <Input placeholder={placeholder} {...field} /> 
+        <Input dir='ltr' placeholder={placeholder} {...field} /> 
         }
           </FormControl>
           {/* <FormDescription>
