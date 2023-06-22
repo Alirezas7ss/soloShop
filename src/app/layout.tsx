@@ -96,6 +96,7 @@ export default function RootLayout({
   authModal: React.ReactNode
 }) {
   return (
+    //suppress for handle error change tag on client for next theme
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head />
       <ClerkProvider>
