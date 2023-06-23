@@ -22,7 +22,7 @@ async function DiscountProduct() {
       return productLists
     } catch (error) {
       // console.error(error)
-      throw new Error("Failed to fetch ProductList data")
+      // throw new Error("Failed to fetch ProductList data")
     }
   }
   const products = await getProductLists()

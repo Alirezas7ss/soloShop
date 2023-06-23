@@ -37,10 +37,10 @@ export default async function Home({
       return product
     } catch (error) {
       console.error(error)
-      throw new Error("Failed to fetch ProductList data")
+      // throw new Error(error.me)
     }
   }
-  const product = await getProduct()
+  const product = await getProduct() 
   return (
     <main>
       <Navbar >

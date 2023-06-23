@@ -54,10 +54,10 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  createdSubreddits Stores[]    @relation("CreatedBy")
+  createdStore Stores[]    @relation("CreatedBy")
   subscriptions     Subscription[]
   votes             Vote[]
-  Products  Products[]
+  Product  ProductList[]
   username String? @unique
   Comment     Comment[]
   CommentVote CommentVote[]
@@ -101,13 +101,14 @@ model Post {
   @@map(name: "posts")
 }
 
-model Products {
+model ProductList {
   id          String    @id @default(cuid())
   title       String
   description String
   imageSrc String[]
   subcategory String
   tags String[]
+  category String[]
   price Decimal
   discount Int
   locationValue String?
@@ -118,8 +119,8 @@ model Products {
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
   authorId    String
-  subreddit   Stores @relation(fields: [subredditId], references: [id])
-  subredditId String
+  store   Stores @relation(fields: [storeId], references: [id])
+  storeId String
   reservation Reservation[]
   comments    Comment[] 
   votes       Vote[]
@@ -150,7 +151,7 @@ model Reservation {
   totalPrice Int
   createdAt DateTime @default(now())
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Products @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  listing ProductList @relation(fields: [listingId], references: [id], onDelete: Cascade)
   @@map(name: "reservations")
 }
 
@@ -164,7 +165,7 @@ model Stores  {
   name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  posts     Products[]
+  product   ProductList[]
 
   creatorId   String?
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
@@ -176,10 +177,10 @@ model Stores  {
 model Subscription {
   user        User      @relation(fields: [userId], references: [id])
   userId      String
-  subreddit   Stores @relation(fields: [subredditId], references: [id])
-  subredditId String
+  store   Stores @relation(fields: [storeId], references: [id])
+  storeId String
 
-  @@id([userId, subredditId])
+  @@id([userId, storeId])
 }
 
 
@@ -189,8 +190,8 @@ model Comment {
   createdAt DateTime @default(now())
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
-  post      Products     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId    String
+  product      ProductList     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId    String
 
   replyToId String?
   replyTo   Comment?  @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
@@ -203,11 +204,11 @@ model Comment {
 model Vote {
   user   User     @relation(fields: [userId], references: [id])
   userId String
-  post   Products     @relation(fields: [postId], references: [id], onDelete: Cascade)
-  postId String
+  product   ProductList     @relation(fields: [producttId], references: [id], onDelete: Cascade)
+  producttId String
   type   VoteType
 
-  @@id([userId, postId])
+  @@id([userId, producttId])
 }
 
 model CommentVote {

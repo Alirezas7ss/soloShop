@@ -5,7 +5,10 @@ export type SubscriptionPlan = {
   stripePriceId: string
   monthlyPrice?: number | null
 }
-
+export type Option = {
+  label: string
+  value: string
+}
 export type SiteConfig = {
     name: string
     description: string
@@ -23,6 +26,7 @@ export type SiteConfig = {
     description: string
     imageSrc: string[]
     createdAt: DateTime 
+    authorId: Int
     category:  string
     userId: string 
     price: Int

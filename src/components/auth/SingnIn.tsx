@@ -12,6 +12,7 @@ import { Form } from "../ui/form"
 import InputForm from "../ui/InputForm"
 import { Button } from "../ui/button"
 import { PasswordInput } from "../ui/password-input"
+import { GenerateButton } from "../generate-button"
 
 const SignIn = () => {
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -57,6 +58,7 @@ const SignIn = () => {
         >
           Sign Up
         </Link>
+        <GenerateButton />
       </p>
     </div>
   )
