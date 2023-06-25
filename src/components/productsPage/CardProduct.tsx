@@ -1,8 +1,8 @@
-import { ProductList } from "@/types"
 import { Star } from "lucide-react"
 import Image from "next/image"
 import React from "react"
 import AddButton from "./AddButton"
+import { PrismaClient, ProductList } from '@prisma/client';
 interface Props {
   product: ProductList
 }
@@ -13,11 +13,11 @@ function CardProduct({ product }: Props) {
       {/* <div className="absolute hidden group-hover:flex rounded-bl-full rounded-br-full  top-0 overflow-hidden  aspect-square w-full h-1/3  items-center justify-center">
         <div className="translate-z-0 absolute inset-0 bg-custom-gradient opacity-50 blur-[120px]" />
       </div> */}
-      <div className="absolute left-1/2 top-0 hidden aspect-square w-1/3 -translate-x-1/2 translate-y-1/2 items-center justify-center group-hover:flex">
-        <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-60 blur-[120px]" />
+      <div className="absolute -z-10 left-1/2 top-0 hidden aspect-square w-80 -translate-x-1/2  items-center justify-center group-hover:flex">
+        <div className="translate-z-0 absolute inset-0 rounded-full opacity blur-[120px] opacity-60 bg-zinc-50  " />
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between z-20">
         <div className="h-[400px] w-[1px] items-center  justify-center  bg-light-custom-y-gradient  transition-all duration-1000 group-hover:h-[470px] dark:bg-custom-y-gradient" />
         <div className="p-5 hover:shadow-md">
           <div className="h-[300px] w-[200px] bg-slate-400">

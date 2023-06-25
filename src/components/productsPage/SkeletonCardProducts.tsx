@@ -6,47 +6,43 @@ import React from "react"
 function SkeletonCardProducts() {
   return (
     <div className="  group relative h-[500px] w-[300px]  ">
-      <div className="duration-1000 transition-all ease-in-out mr-[50%] h-[1px]  w-[70%] translate-x-[50%] bg-light-custom-gradient  dark:bg-custom-gradient " />
-      
-      <div className="absolute left-1/2 top-0 hidden aspect-square w-1/3 -translate-x-1/2 translate-y-1/2 items-center justify-center ">
-        <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-60 blur-[120px]" />
+      <div className="mr-[50%]  h-[1px] w-[70%] translate-x-[50%] bg-light-custom-gradient  transition-all duration-1000 ease-in-out group-hover:w-full dark:bg-custom-gradient " />
+      {/* <div className="absolute hidden group-hover:flex rounded-bl-full rounded-br-full  top-0 overflow-hidden  aspect-square w-full h-1/3  items-center justify-center">
+      <div className="translate-z-0 absolute inset-0 bg-custom-gradient opacity-50 blur-[120px]" />
+    </div> */}
+      <div className="absolute transition-all ease-in-out duration-1000 hidden left-1/2 top-0  aspect-square w-80 -translate-x-1/2 items-center justify-center group-hover:flex">
+        <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-50 blur-[150px] " />
       </div>
-
       <div className="flex items-center justify-between">
-        <div className="h-[400px] w-[1px] items-center  justify-center bg-light-custom-y-gradient  dark:bg-custom-y-gradient" />
-        <div className="p-5 ">
-          <div className="h-[300px] w-[200px] bg-slate-400">
-            
-          </div>
+        <div className="h-[400px] w-[1px] items-center  justify-center  bg-light-custom-y-gradient  transition-all duration-1000 group-hover:h-[470px] dark:bg-custom-y-gradient" />
+        <div className="p-5 hover:shadow-md">
+          <div className="h-[300px] w-[200px]  bg-slate-400 animate-pulse"></div>
           <div className="mx-2 mt-3  ">
             <div className="  h-[1px] bg-custom-gradient " />
-            <div className=" my-1 bg-slate-200 h-5 rounded-full w-[100px]  " />
-            <div dir="ltr" className="space-y-2 text-sm">
-              <div className="flex items-center  space-x-3">
-                <div className="h-4 w-4 rounded-full bg-slate-200 " />
-                <p className="ml-24 h-4 w-4 rounded-full bg-slate-200 flex items-center text-sm ">
-                  
-                </p>{" "}
-              </div>
-              <div className="">
-                <div className="flex justify-between ">
-                  <div className="bg-slate-200 h-5 rounded-full w-[90px]">
-                    
-                  </div>
-                    <div className="-mb-[5px] bg-slate-200 h-5 w-[30px]  mr-1 flex items-center  justify-center rounded-lg bg-gradient-to-r from-[--brand-primary] to-[--brand-secondary] px-2 py-[2px] font-bold text-background">
-                     
-                    </div>
+            <p className=" my-1  h-5 w-20 rounded-md bg-slate-400 animate-pulse "></p>
+            <div dir="ltr" className="space-y-4 text-sm">
+              <div className="flex justify-between">
+                <div className="flex items-center  space-x-3">
+                  <Star className="h-4 w-4 animate-pulse"  />
+                  <p className="ml-24 flex h-5 w-5 items-center rounded-full bg-slate-400 animate-pulse text-sm "></p>{" "}
                 </div>
-                  <div className="flex bg-slate-200 rounded-full h-4 mt-2 w-[70px] items-center text-xs text-slate-500 line-through">
-                    
+                <div className="h-7 w-7 animate-pulse rounded-full border-2 border-slate-400" />
+              </div>
+              <div className="-mx-1 flex">
+                <p className=" h-2 w-7 rotate-90 rounded-sm bg-slate-400 animate-pulse"></p>
+                <div className="w-full">
+                  <div className="flex justify-between ">
+                    <div className="h-4 w-10 rounded-md bg-slate-400 animate-pulse"></div>
+                    <div className="px-2\ -mb-[5px] mr-1  flex h-5 w-8 animate-pulse  items-center justify-center rounded-lg bg-gradient-to-r from-[--brand-primary] to-[--brand-secondary] pb-[1px] font-bold text-background"></div>
                   </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="h-[400px] w-[1px] items-center  justify-center bg-light-custom-y-gradient   dark:bg-custom-y-gradient " />
+        <div className="h-[400px]  w-[1px] items-center justify-center bg-light-custom-y-gradient  transition-all duration-1000 group-hover:h-[470px]  dark:bg-custom-y-gradient " />
       </div>
-      <div className="mr-[50%] h-[1px] w-[70%] translate-x-[50%] bg-light-custom-gradient  dark:bg-custom-gradient  " />
+      <div className="mr-[50%]  h-[1px] w-[70%] translate-x-[50%] bg-light-custom-gradient transition-all duration-1000 group-hover:w-full dark:bg-custom-gradient  " />
     </div>
   )
 }

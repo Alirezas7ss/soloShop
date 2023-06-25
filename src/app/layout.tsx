@@ -11,6 +11,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/homePage/Navbar"
 import Sidebar from "@/components/homePage/Sidebar"
 import { ClerkProvider } from "@clerk/nextjs"
+import PermanentLayout from "@/components/PermanentLayout"
+import Login from "@/components/homePage/Login"
 // const fontSans = FontSans({
 //   subsets: ["latin"],
 //   variable: "--font-sans",
@@ -102,7 +104,7 @@ export default function RootLayout({
       <ClerkProvider>
         <body
           className={cn(
-            "relative min-h-screen bg-background font-base antialiased",
+            "relative min-h-screen  bg-background font-base antialiased",
             // fontSans.variable,
             fontHeading.variable,
             fontSemiHeading.variable,
@@ -110,10 +112,17 @@ export default function RootLayout({
             fontBase.variable
           )}
         >
+          <PermanentLayout>
+            <Navbar>
+              {/* @ts-expect-error Server Component */}
+              <Login />
+            </Navbar>
+            <Sidebar />
+          </PermanentLayout>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             {authModal}
 
-            {children}
+            <div className="pt-16">{children}</div>
             <Analytics />
             <Toaster />
             <TailwindIndicator />

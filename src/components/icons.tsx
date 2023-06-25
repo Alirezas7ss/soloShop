@@ -2,7 +2,6 @@ import {
   Laptop,
   LucideProps,
   Moon,
-  ChevronLeft,
   SunMedium,
   Plus,
   Minus,
@@ -11,6 +10,13 @@ import {
   Loader2,
   AlertTriangle,
   User,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+  ChevronsUpDown,
+  ChevronUp,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -20,7 +26,6 @@ export const Icons = {
   warning: AlertTriangle,
   sun: SunMedium,
   moon: Moon,
-  chevronLeft: ChevronLeft,
   laptop: Laptop,
   plus: Plus,
   minus: Minus,
@@ -28,6 +33,13 @@ export const Icons = {
   view: Eye,
   hide: EyeOff,
   spinner: Loader2,
+  chevronLeft: ChevronLeft,
+  chevronRight: ChevronRight,
+  chevronsLeft: ChevronsLeft,
+  chevronsRight: ChevronsRight,
+  chevronUp: ChevronUp,
+  chevronDown: ChevronDown,
+  chevronUpDown: ChevronsUpDown,
   youtube: (props: LucideProps) => (
     <svg
       {...props}
