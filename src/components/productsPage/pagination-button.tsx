@@ -66,8 +66,9 @@ export function PaginationButton({
 
   return (
     <div
+    dir="ltr"
       className={cn(
-        "flex flex-wrap items-center justify-center gap-2",
+        "flex flex-wrap  items-center justify-center gap-2",
         className
       )}
       {...props}

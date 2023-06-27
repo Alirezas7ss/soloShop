@@ -32,7 +32,7 @@ const ShowSearch = () => {
   }
   // OnSubmit Handler
   const onSubmitHandler = () => {
-    router.replace(`/products?search=${inputValue}`)
+    router.push(`/products?searchQuery=${inputValue}`)
   }
   const productClickHandler = () => {
     setInputValue("")

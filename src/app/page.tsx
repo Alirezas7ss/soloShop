@@ -7,7 +7,7 @@ import DiscountProduct from "@/components/homePage/DiscountProduct"
 import SkeletonDiscount from "@/components/homePage/SkeletonDiscount"
 import BlogHome from "@/components/homePage/blogHome/BlogHome"
 import { db } from "@/lib/db"
-import { ProductList } from "@/types"
+import { Suspense } from "react"
 
 
 export default async function Home({
@@ -40,7 +40,7 @@ export default async function Home({
   return (
     <main>
       
-      <div className="z-0 pt-16 ">
+      <div className="z-0  ">
         <div className="">
           <div>
             <NavSpotlight product={product} />

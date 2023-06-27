@@ -11,23 +11,21 @@ interface Props {
 }
 function loading() {
   return (
-    <div>
-      <div className="  px-[10%] pt-24 ">
-        <div className="space-y-2">
-          <Skeleton className="h-10 w-28" />
-          <Skeleton className="h-4 w-48" />
-        </div>
-        <div className="flex mt-10 items-center gap-2">
-          <Skeleton className="h-10 w-14" />
-          <Skeleton className="h-10 w-20" />
-        </div>
-        <div className="flex flex-wrap ">
-          {[...new Array(4)].map((_, index) => (
+    <div className="mb-10 mt-16 flex flex-col space-y-6 px-16">
+      <div className="space-y-2">
+        <Skeleton className="h-10 w-28" />
+        <Skeleton className="h-4 w-48" />
+      </div>
+      <div className="mt-10 flex items-center gap-2">
+        <Skeleton className="h-10 w-14" />
+        <Skeleton className="h-10 w-20" />
+      </div>
+        <div className="flex flex-wrap  gap-2 ">
+          {[...new Array(10)].map((_, index) => (
             <div className="" key={index}>
               <SkeletonCardProducts />
             </div>
           ))}
-        </div>
       </div>
     </div>
   )

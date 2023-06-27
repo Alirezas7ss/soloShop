@@ -12,14 +12,28 @@ import { Form } from "../ui/form"
 import InputForm from "../ui/InputForm"
 import { Button } from "../ui/button"
 import { PasswordInput } from "../ui/password-input"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 const SignUp = () => {
+   // const { pending } = useFormStatus()
+  // 1. Define your form.
+  const router = useRouter();
+  const [isPending, setIsPending] = useState(false);
+  
+  setIsPending(true)
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
       username: "",
     },
   })
+  async function clickHandler() {
+    router.back()
+    setTimeout(() => {
+      router.push("/sign-up")
+    }, 50)
+  }
   const onSubmit = async (data: SignInType) => {}
   return (
     <div className="container mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[400px]">
@@ -38,25 +52,38 @@ const SignUp = () => {
             placeholder="نام کاربری را وارد کنید"
             control={form.control}
           />
- 
+
           <InputForm
             type="pass"
             name="رمز"
             placeholder="رمز را وارد کنید"
             control={form.control}
           />
-          <Button type="submit">تایید</Button>
-        </form>
+<Button disabled={isPending} type="submit">
+            {isPending ? (
+              <div className="flex">
+                <Icons.spinner
+                  className="mr-2 h-4 w-4 animate-spin"
+                  aria-hidden="true"
+                />
+                <span className="">...</span>
+              </div>
+            ) : (
+              <span className="">تایید</span>
+            )}
+          </Button>
+                  </form>
       </Form>
       <UserAuthForm />
       <p className="px-8 text-center text-sm text-muted-foreground">
-        is member Solop?{" "}
-        <Link
-          href="/sign-in"
-          className="hover:text-brand text-sm underline underline-offset-4"
+        is member uritect?{" "}
+        <span
+          onClick={clickHandler}
+          // href={`/sign-up?previousRoute=${previousRoute}`}
+          className="hover:text-brand cursor-pointer text-sm underline underline-offset-4"
         >
-          Sign In
-        </Link>
+          Sign Up
+        </span>
       </p>
     </div>
   )

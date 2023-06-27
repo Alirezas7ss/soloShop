@@ -10,8 +10,8 @@ function SkeletonCardProducts() {
       {/* <div className="absolute hidden group-hover:flex rounded-bl-full rounded-br-full  top-0 overflow-hidden  aspect-square w-full h-1/3  items-center justify-center">
       <div className="translate-z-0 absolute inset-0 bg-custom-gradient opacity-50 blur-[120px]" />
     </div> */}
-      <div className="absolute transition-all ease-in-out duration-1000 hidden left-1/2 top-0  aspect-square w-80 -translate-x-1/2 items-center justify-center group-hover:flex">
-        <div className="translate-z-0 absolute inset-0 rounded-full bg-zinc-50 opacity-50 blur-[150px] " />
+      <div className="absolute -z-10 left-1/2 top-24 hidden aspect-square w-32 -translate-x-1/2   items-center justify-center group-hover:flex">
+        <div className="translate-z-0 absolute inset-0 rounded-full opacity blur-[120px] opacity-50 bg-zinc-50  " />
       </div>
       <div className="flex items-center justify-between">
         <div className="h-[400px] w-[1px] items-center  justify-center  bg-light-custom-y-gradient  transition-all duration-1000 group-hover:h-[470px] dark:bg-custom-y-gradient" />
