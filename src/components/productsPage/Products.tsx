@@ -153,12 +153,12 @@ export function Products({
         <Sheet>
           <SheetTrigger asChild>
             <Button aria-label="Filter products" size="sm" disabled={isPending}>
-              Filter
+              فیلتر
             </Button>
           </SheetTrigger>
           <SheetContent className="flex flex-col">
             <SheetHeader className="px-1">
-              <SheetTitle>Filters</SheetTitle>
+              <SheetTitle>فیلتر</SheetTitle>
             </SheetHeader>
             <Separator />
             <div className="flex flex-1 flex-col gap-5 overflow-hidden px-1">
@@ -237,7 +237,7 @@ export function Products({
                   }}
                   disabled={isPending}
                 >
-                  Clear Filters
+                  پاک کردن فیلترها
                 </Button>
               </SheetFooter>
             </div>
@@ -246,7 +246,7 @@ export function Products({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button aria-label="Sort products" size="sm" disabled={isPending}>
-              Sort
+              ترتیب
               <Icons.chevronDown className="ml-2 h-4 w-4" aria-hidden="true" />
             </Button>
           </DropdownMenuTrigger>
@@ -275,7 +275,7 @@ export function Products({
       </div>
       {!isPending && !products.length ? (
         <div className="mx-auto flex max-w-xs flex-col space-y-1.5">
-          <h1 className="text-center text-2xl font-bold">No products found</h1>
+          <h1 className="text-center text-2xl font-bold">محصولی پیدا نشد</h1>
           <p className="text-center text-muted-foreground">
             Try changing your filters, or check back later for new products
           </p>

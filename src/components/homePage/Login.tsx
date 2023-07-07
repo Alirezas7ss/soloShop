@@ -2,19 +2,19 @@ import React from "react"
 import { Button, buttonVariants } from "../ui/button"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
+
 import { UserAccountNav } from "./UserAccountNav"
-import { useSession } from "next-auth/react"
+import { currentUser } from "@clerk/nextjs"
 
 async function Login() {
-  const session = await getServerSession(authOptions)
-  console.log(session)
+  const user = await currentUser()
+
+  console.log(user)
   return (
     <div className="">
-      {session?.user ? (
+      {user ? (
         <div className="mt-2">
-          <UserAccountNav user={session.user} />
+          <UserAccountNav user={user} />
         </div>
       ) : (
         <Link

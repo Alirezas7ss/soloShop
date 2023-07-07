@@ -22,10 +22,8 @@ export default async function Home({
       const product =
         (await db.productList.findFirst({
           where: {
-            category: "کراوات",
-            point: {
-              gt: 0,
-            },
+            title: "کت خاکستری",
+            
           },
         })) || null
 

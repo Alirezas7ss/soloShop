@@ -27,7 +27,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Icons } from "@/components/icons"
 import { addStoreAction } from "@/app/_actions/store"
-import { storeSchema } from "../validations/store"
+import { storeSchema } from "../../lib/validations/store"
 
 interface AddStoreFormProps {
   userId: string

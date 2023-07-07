@@ -29,7 +29,7 @@ async function DiscountProduct() {
   return (
     <div className=" flex flex-nowrap justify-center gap-5 overflow-y-hidden overflow-x-scroll scrollbar-hide">
       {/* <Suspense fallback={<SkeletonDiscount />}> */}
-        {products.map((product, index) => (
+        {products?.map((product, index) => (
           <div key={product.id}>
             <CustomCardB product={product} beOnShadow={true} />
           </div>

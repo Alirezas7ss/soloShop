@@ -13,6 +13,7 @@ import Sidebar from "@/components/homePage/Sidebar"
 import { ClerkProvider } from "@clerk/nextjs"
 import PermanentLayout from "@/components/PermanentLayout"
 import Login from "@/components/homePage/Login"
+import ZoomOut from "@/components/ZoomOut"
 // const fontSans = FontSans({
 //   subsets: ["latin"],
 //   variable: "--font-sans",
@@ -102,32 +103,33 @@ export default function RootLayout({
     <html lang="fa" dir="rtl" suppressHydrationWarning>
       <head />
       <ClerkProvider>
-        <body
-          className={cn(
-            "relative min-h-screen  bg-background font-base antialiased",
-            // fontSans.variable,
-            fontHeading.variable,
-            fontSemiHeading.variable,
-            fontMedium.variable,
-            fontBase.variable
-          )}
-        >
-          <PermanentLayout>
-            <Navbar>
-              {/* @ts-expect-error Server Component */}
-              <Login />
-            </Navbar>
-            <Sidebar />
-          </PermanentLayout>
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {authModal}
+          <body
+            className={cn(
+              "relative min-h-screen  bg-background font-base antialiased",
+              // fontSans.variable,
+              fontHeading.variable,
+              fontSemiHeading.variable,
+              fontMedium.variable,
+              fontBase.variable
+            )}
+            >
 
-            <div className="pt-16">{children}</div>
-            <Analytics />
-            <Toaster />
-            <TailwindIndicator />
-          </ThemeProvider>
-        </body>
+            <PermanentLayout>
+              <Navbar>
+                {/* @ts-expect-error Server Component */}
+                <Login />
+              </Navbar>
+              <Sidebar />
+            </PermanentLayout>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+              {authModal}
+
+              <div className="pt-16">{children}</div>
+              <Analytics />
+              <Toaster />
+              <TailwindIndicator />
+            </ThemeProvider>
+          </body>
       </ClerkProvider>
     </html>
   )

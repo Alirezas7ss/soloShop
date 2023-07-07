@@ -54,13 +54,14 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
+  emailPreferences EmailPreferences[]
   createdStore Stores[]    @relation("CreatedBy")
   subscriptions     Subscription[]
   votes             Vote[]
-  Product  ProductList[]
+  product  ProductList[]
   username String? @unique
-  Comment     Comment[]
-  CommentVote CommentVote[]
+  comment     Comment[]
+  commentVote CommentVote[]
   image         String?
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @default(now()) @map(name: "updated_at")
@@ -70,7 +71,8 @@ model User {
   accounts Account[]
   // productsList ProductList[]
   sessions Session[]
-  Post     Post[]
+  post     Post[]
+  pyments Pyments[]
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
@@ -101,15 +103,21 @@ model Post {
   @@map(name: "posts")
 }
 
+enum Category {
+  skateboards
+  clothing
+  shoes
+  accessories
+}
 model ProductList {
   id          String    @id @default(cuid())
   title       String
   description String
   imageSrc String[]
-  subcategory String
+  subcategory String[]
   tags String[]
-  category String[]
-  price Decimal
+  category Category[]
+  price Int
   discount Int
   locationValue String?
   inventory Int
@@ -121,9 +129,12 @@ model ProductList {
   authorId    String
   store   Stores @relation(fields: [storeId], references: [id])
   storeId String
-  reservation Reservation[]
+  listingId String?
+  listing Reservation? @relation(fields: [listingId], references: [id])
   comments    Comment[] 
   votes       Vote[]
+ orderItem OrderItem[]
+
 }
 // model ProductList {
 //   id    String @id @default(cuid())
@@ -144,14 +155,15 @@ model ProductList {
 
 model Reservation {
   id String @id @default(cuid())
+  clientSecret   String
+  items ProductList[]
   userId String 
-  listingId String   
+  paymentIntentId String 
   startDate DateTime
   endDate DateTime
   totalPrice Int
   createdAt DateTime @default(now())
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing ProductList @relation(fields: [listingId], references: [id], onDelete: Cascade)
   @@map(name: "reservations")
 }
 
@@ -163,17 +175,30 @@ enum VoteType {
 model Stores  {
   id        String   @id @default(cuid())
   name      String   @unique
+  description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product   ProductList[]
-
+  products   ProductList[]
+  order Order[]
   creatorId   String?
   Creator     User?          @relation("CreatedBy", fields: [creatorId], references: [id])
   subscribers Subscription[]
-
+  billboard Billboard[]
+  pyments Pyments[]
   @@index([name])
 }
+model Billboard {
+  id          String @id @default(uuid())
+  storeId     String
+  store       Stores @relation( fields: [storeId], references: [id])
+  label       String
+  imageUrl    String
+  categories  String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
+  @@index([storeId])
+}
 model Subscription {
   user        User      @relation(fields: [userId], references: [id])
   userId      String
@@ -220,3 +245,57 @@ model CommentVote {
 
   @@id([userId, commentId])
 }
+
+model EmailPreferences {
+  id        String   @id @default(cuid())
+  userId    String
+   user      User     @relation(fields: [userId], references: [id])
+  email String
+  token String
+  commentId String
+  newletter Boolean
+  marketing Boolean
+  transctional Boolean
+  createdAt DateTime @default(now())
+} 
+
+model Order {
+  id        String    @id @default(uuid())
+  storeId     String    // Foreign Key to Store
+  store      Stores     @relation( fields: [storeId], references: [id])
+  orderItems OrderItem[] // Relation to OrderItem model
+  isPaid     Boolean   @default(false)
+  phone      String    @default("")
+  address    String    @default("")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([storeId])
+}
+
+// Intermediary for a many-to-many relationship
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String  // Foreign Key to Order
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String  // Foreign Key to Product
+  product   ProductList @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+
+model Pyments {
+  id String  @id @default(uuid())
+  userId String 
+   user      User     @relation(fields: [userId], references: [id])
+
+  storeId String
+  store      Stores     @relation( fields: [storeId], references: [id])
+  stripeAccountId String
+  stripeAccountCreatedAt Int
+stripeAccountExpiresAt Int
+detailsSubmitted Boolean
+createdAt DateTime  @default(now())
+} 

@@ -30,7 +30,7 @@ function CustomCardB({ beOnShadow, product }: Props) {
             <div className="relative mx-2 mt-3 space-y-2 ">
               <div className="  h-[1px] bg-custom-gradient " />
 
-              <p className=" my-1  ">{product.title}</p>
+              <p className=" pb-2   pt-1 ">{product.title}</p>
               <div dir="ltr" className="space-y-2 text-sm">
                 <div className="flex items-center  space-x-3">
                   <Star className="h-4 w-4" />
@@ -61,19 +61,20 @@ function CustomCardB({ beOnShadow, product }: Props) {
               </div>
             </div>
             {beOnShadow && (
-              <div className="absolute inset-0 -translate-x-full bg-transparent bg-gradient-to-r from-transparent via-gray-600/20 bg-clip-border group-hover:translate-x-full group-hover:transition group-hover:duration-1000" />
+              <div className="absolute z-30 inset-0 -translate-x-full bg-transparent bg-gradient-to-r from-transparent via-gray-600/20 bg-clip-border peer-hover:translate-x-full peer-hover:transition peer-hover:duration-1000" />
             )}
           </div>
         </div>
-        <Link
-          href={`/products/${product.id}/${replaceSpacesWithHyphens(
-            product.title
-          )}`}
-          className="absolute inset-0 z-20"
-        >
-          <span className="sr-only">View Product</span>
-        </Link>
-        <div dir='ltr' className="absolute z-30 mt-[220px] mr-4">
+          {/* <Link
+            href={`/products/${product.id}/${replaceSpacesWithHyphens(
+              product.title
+            )}`}
+            className=" absolute inset-0 z-20"
+          >
+            <span className="sr-only">View Product</span>
+          </Link> */}
+        
+        <div dir='ltr' className="absolute z-30 mt-[223px] mr-4">
           <AddButton />
         </div>
       </div>

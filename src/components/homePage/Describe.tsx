@@ -106,7 +106,7 @@ const useMousePosition = () => {
   
 ];
   return (
-    <div className="relative bg-zinc-900 p-8">
+    <div className="relative bg-zinc-900/30 backdrop-blur-md p-8">
        
       <div className="relative  grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-base">
         {boxes.map((box) => (

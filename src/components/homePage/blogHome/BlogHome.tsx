@@ -15,7 +15,7 @@ async function BlogHome() {
       return compareDesc(new Date(a.date), new Date(b.date))
     })
 
-  const blogs = await db.post.findMany()
+  // const blogs = await db.post.findMany()
   return (
     <div className="h-[100vh] w-[100%]  px-12 pt-10 ">
       <div className="mb-5 flex justify-between ">

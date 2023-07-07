@@ -11,11 +11,11 @@ export const sortOptions = [
   { label: "Price: High to low", value: "price.desc" },
   {
     label: "Alphabetical: A to Z",
-    value: "name.asc",
+    value: "title.asc",
   },
   {
     label: "Alphabetical: Z to A",
-    value: "name.desc",
+    value: "title.desc",
   },
 ]
 

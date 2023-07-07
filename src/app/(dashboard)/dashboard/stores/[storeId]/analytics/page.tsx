@@ -1,11 +1,9 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { db } from "@/db"
-import { stores } from "@/db/schema"
-import { eq } from "drizzle-orm"
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react"
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { db } from "@/lib/db"
 
 export const metadata: Metadata = {
   title: "Analytics",
@@ -21,14 +19,16 @@ interface AnalyticsPageProps {
 export default async function AnalyticsPage({ params }: AnalyticsPageProps) {
   const storeId = Number(params.storeId)
 
-  const store = await db.query.stores.findFirst({
-    where: eq(stores.id, storeId),
-    columns: {
+  const store = await db.stores.findFirst({
+    where: {
+      id: storeId,
+    },
+    select: {
       id: true,
       name: true,
       description: true,
     },
-  })
+  });
 
   if (!store) {
     notFound()
