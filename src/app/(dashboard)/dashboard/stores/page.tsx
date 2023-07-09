@@ -123,15 +123,15 @@ console.log(user.id)
             <CardContent>
               <Link
                 href={
-                  subscriptionPlan.id === "basic" && userStores.length >= 1
+                  subscriptionPlan.id === "basic" && userStores.length >= 2
                     ? "/dashboard/billing"
                     : subscriptionPlan.id === "standard" &&
                       isSubscriptionPlanActive &&
-                      userStores.length >= 2
+                      userStores.length >= 3
                     ? "/dashboard/billing"
                     : subscriptionPlan.id === "pro" &&
                       isSubscriptionPlanActive &&
-                      userStores.length >= 3
+                      userStores.length >= 4
                     ? "/dashboard/billing"
                     : "/dashboard/stores/new"
                 }

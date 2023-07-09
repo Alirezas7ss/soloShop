@@ -175,6 +175,8 @@ enum VoteType {
 model Stores  {
   id        String   @id @default(cuid())
   name      String   @unique
+  slug String?
+  active Boolean?
   description String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

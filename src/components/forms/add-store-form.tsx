@@ -66,8 +66,7 @@ export function AddStoreForm({ userId }: AddStoreFormProps) {
   return (
     <Card>
       <CardHeader className="space-y-1">
-        <CardTitle className="text-2xl">Add store</CardTitle>
-        <CardDescription>Add a new store to your account</CardDescription>
+        
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -80,9 +79,9 @@ export function AddStoreForm({ userId }: AddStoreFormProps) {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>اسم فروشگاه </FormLabel>
                   <FormControl>
-                    <Input placeholder="Type store name here." {...field} />
+                    <Input placeholder="اسم فروشگاهتان را مشخص کنید." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -93,10 +92,10 @@ export function AddStoreForm({ userId }: AddStoreFormProps) {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Description</FormLabel>
+                  <FormLabel>توضیحات</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Type store description here."
+                      placeholder="توضیحاتی برای فروشگاهتان بنویسید"
                       {...field}
                     />
                   </FormControl>
@@ -111,7 +110,7 @@ export function AddStoreForm({ userId }: AddStoreFormProps) {
                   aria-hidden="true"
                 />
               )}
-              Add Store
+              اضافه شود
               <span className="sr-only">Add Store</span>
             </Button>
           </form>

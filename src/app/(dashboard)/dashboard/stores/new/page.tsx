@@ -30,14 +30,13 @@ export default async function NewStorePage() {
   return (
     <Shell variant="sidebar">
       <Header
-        title="New Store"
-        description="New store for your account."
+        title="فروشگاه جدید"
+        description="فروشگاه خود را اضافه کنید"
         size="sm"
       />
       <Card>
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Add store</CardTitle>
-          <CardDescription>Add a new store to your account</CardDescription>
+       
         </CardHeader>
         <CardContent>
           <AddStoreForm userId={user.id} />
