@@ -102,7 +102,6 @@ model Post {
 
   @@map(name: "posts")
 }
-
 enum Category {
   skateboards
   clothing
@@ -123,6 +122,8 @@ model ProductList {
   inventory Int
   content     Json?
   quantity Int
+  colors Color[]
+  sizes Size[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
   author      User      @relation(fields: [authorId], references: [id])
@@ -135,6 +136,19 @@ model ProductList {
   votes       Vote[]
  orderItem OrderItem[]
 
+}
+model Color {
+  id          String    @id @default(cuid())
+  title String
+  code  String
+  productId String?
+  product ProductList? @relation(fields: [productId], references: [id])
+}
+model Size {
+  id          String    @id @default(cuid())
+  title String
+  productId String?
+  product ProductList? @relation(fields: [productId], references: [id])
 }
 // model ProductList {
 //   id    String @id @default(cuid())

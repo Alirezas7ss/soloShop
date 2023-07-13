@@ -15,6 +15,7 @@ export type Option = {
   label: string
   value: string
 }
+
 export type SiteConfig = {
     name: string
     description: string
@@ -29,6 +30,8 @@ export type SiteConfig = {
   export type ProductList = {
     id:    string 
     title: string
+    colors: Color[]
+    sizes: Size[]
     description: string
     imageSrc: string[]
     createdAt: DateTime 
@@ -38,6 +41,15 @@ export type SiteConfig = {
     price: Int
     discount: Int
     point: Int
+  }
+  export type Color = {
+    id: string;
+    title: string;
+    code: string;
+  };
+  export type Size = {
+    id: string;
+    title: string;
   }
 
   interface RatingProps {
@@ -105,4 +117,8 @@ export type StoredFile = {
   id: string
   name: string
   url: string
+}
+
+export type FileWithPreview = FileWithPath & {
+  preview: string
 }

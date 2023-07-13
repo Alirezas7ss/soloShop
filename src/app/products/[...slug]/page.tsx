@@ -2,7 +2,6 @@ import { env } from "@/env.mjs"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-
 import { cn, formatPrice } from "@/lib/utils"
 import {
   Accordion,
@@ -11,13 +10,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion"
 import { Separator } from "@/components/ui/separator"
-// import { AddToCartForm } from "@/components/forms/add-to-cart-form"
 import { Icons } from "@/components/icons"
 // import { ProductCard } from "@/components/product-card"
 import { ProductImageCarousel } from "@/components/product/product-image-carousel"
 import { Shell } from "@/components/Shell"
 import { db } from "@/lib/db"
 import AddButton from "@/components/productsPage/AddButton"
+import AddCartProduct from "@/components/product/AddCartProduct"
+import { currentUser } from "@clerk/nextjs"
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
@@ -32,16 +32,30 @@ interface PrdouctPageProps {
 }
 
 export default async function ProductPage({ params }: PrdouctPageProps) {
-   
- 
   const productId = params.slug[0]
 
   const product = await db.productList.findFirst({
+    
     where: {
       id: productId,
     },
+    include: {
+      colors: {
+        select: {
+          id: true,
+          title: true,
+          code: true,
+        },
+      },
+      sizes: {
+        select: {
+          id: true,
+          title: true,
+        },
+      },
+    },
   })
-
+  
   if (!product) {
     notFound()
   }
@@ -67,57 +81,60 @@ export default async function ProductPage({ params }: PrdouctPageProps) {
   //       )
   //       .orderBy(desc(products.inventory))
   //   : []
-
+  const user = await currentUser()
   return (
-    <Shell >
-      <div dir='ltr' className=" flex items-center space-x-1 text-sm capitalize text-muted-foreground">
+    <Shell>
+      <div
+        
+        className=" flex items-center space-x-1 text-sm capitalize text-muted-foreground"
+      >
         <div className="truncate">Products</div>
         <Icons.chevronRight className="h-4 w-4" aria-hidden="true" />
         <div className={cn(!product.subcategory && "text-foreground")}>
-          {product.category}
+          {product.category[0]}
         </div>
         {product.subcategory ? (
           <>
             <Icons.chevronRight className="h-4 w-4" aria-hidden="true" />
-            <div className="text-foreground">{product.subcategory}</div>
+            <div className="text-foreground">{product.subcategory[0]}</div>
           </>
         ) : null}
       </div>
-        <Separator className=" md:hidden" />
+      <Separator className=" md:hidden" />
       <div className="  flex flex-col-reverse gap-8 md:flex-row md:gap-16">
-        
-        
         <div className=" flex w-full flex-col gap-4 md:w-1/2">
           <div className="space-y-2">
             <h2 className="line-clamp-1 text-2xl font-bold">{product.title}</h2>
             {/* <p dir='ltr' className="text-base text-muted-foreground">
               {formatPrice(product.price)}
             </p> */}
-            <div dir='ltr' className="flex   h-8 -mx-1">
-                  <div className='flex h-8 w-[50%]'>
-                    <p className="h-fit w-fit rotate-90">تومان</p>
-                                    <div className="w-full">
-                    <div className="flex justify-between ">
-                      { product.price && <div>
+            <div dir="ltr" className="-mx-1   flex h-8">
+              <div className="flex h-8 w-[50%]">
+                <p className="h-fit w-fit rotate-90">تومان</p>
+                <div className="w-full">
+                  <div className="flex justify-between ">
+                    {product.price && (
+                      <div>
                         {(
                           product.price *
                           ((100 - product.discount) / 100)
                         ).toLocaleString()}
-                      </div>}
-                      {product.discount > 0 && (
-                        <div className="-mb-[5px]  mr-1 flex items-center  justify-center rounded-lg bg-gradient-to-r from-[--brand-primary] to-[--brand-secondary] px-2 py-[2px] font-bold text-background">
-                          {product.discount}%
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                     {product.discount > 0 && (
-                      <div className="flex items-center text-xs text-slate-500 line-through">
-                        {product.price.toLocaleString()}
+                      <div className="-mb-[5px]  mr-1 flex items-center  justify-center rounded-lg bg-gradient-to-r from-[--brand-primary] to-[--brand-secondary] px-2 py-[2px] font-bold text-background">
+                        {product.discount}%
                       </div>
                     )}
                   </div>
+                  {product.discount > 0 && (
+                    <div className="flex items-center text-xs text-slate-500 line-through">
+                      {product.price.toLocaleString()}
+                    </div>
+                  )}
                 </div>
               </div>
+            </div>
             {/* {store ? (
               <Link
                 href={`/products?store_ids=${store.id}`}
@@ -128,8 +145,13 @@ export default async function ProductPage({ params }: PrdouctPageProps) {
             ) : null} */}
           </div>
           <Separator className="my-1.5" />
-          {/* <AddToCartForm productId={productId} /> */}
-   <AddButton />
+          <AddCartProduct 
+          colors={product.colors}
+          sizes={product.sizes}
+          productId={product.id}
+          quantity={product.quantity}
+          userId={user?.id}
+          />
           <Separator className="mt-5" />
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="description">

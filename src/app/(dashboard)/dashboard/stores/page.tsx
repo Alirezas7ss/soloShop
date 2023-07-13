@@ -65,7 +65,7 @@ console.log(user.id)
 
   return (
     <Shell variant="sidebar">
-      <Header title="Stores" description="Manage your stores" size="sm" />
+      <Header title="فروشگاه" description="مدیریت فروشگاه" size="sm" />
       <Alert>
         <Icons.terminal className="h-4 w-4" aria-hidden="true" />
         <AlertTitle>Heads up!</AlertTitle>
@@ -115,9 +115,9 @@ console.log(user.id)
         {userStores.length < 3 && (
           <Card className="flex h-full flex-col">
             <CardHeader className="flex-1">
-              <CardTitle className="line-clamp-1">Create a new store</CardTitle>
+              <CardTitle className="line-clamp-1">فروشگاه جدید خود را بسازید</CardTitle>
               <CardDescription className="line-clamp-2">
-                Create a new store to start selling your products.
+                داخل فروشگاهت محصولاتت رو بفروش برسون
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -144,8 +144,8 @@ console.log(user.id)
                     })
                   )}
                 >
-                  Create a store
-                  <span className="sr-only">Create a new store</span>
+                  ساخت فروشگاه
+                  <span className="sr-only">فروشگاه جدید خود را بسازید</span>
                 </div>
               </Link>
             </CardContent>

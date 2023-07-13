@@ -4,9 +4,9 @@ import React from "react"
 import testImage from "/public/avatar/testcardimage.jpg"
 import { Star } from "lucide-react"
 import { ProductList } from "@/types"
-import AddButton from "../productsPage/AddButton"
 import replaceSpacesWithHyphens from "@/script/script"
 import Link from "next/link"
+import AddButton from "../productsPage/AddButton"
 
 interface Props {
   beOnShadow: boolean
@@ -61,25 +61,24 @@ function CustomCardB({ beOnShadow, product }: Props) {
               </div>
             </div>
             {beOnShadow && (
-              <div className="absolute z-30 inset-0 -translate-x-full bg-transparent bg-gradient-to-r from-transparent via-gray-600/20 bg-clip-border peer-hover:translate-x-full peer-hover:transition peer-hover:duration-1000" />
+              <div className="absolute inset-0 z-30 -translate-x-full bg-transparent bg-gradient-to-r from-transparent via-gray-600/20 bg-clip-border peer-hover:translate-x-full peer-hover:transition peer-hover:duration-1000" />
             )}
           </div>
         </div>
-          {/* <Link
+        <Link
             href={`/products/${product.id}/${replaceSpacesWithHyphens(
               product.title
             )}`}
             className=" absolute inset-0 z-20"
           >
             <span className="sr-only">View Product</span>
-          </Link> */}
-        
-        <div dir='ltr' className="absolute z-30 mt-[223px] mr-4">
+          </Link>
+
+        <div dir="ltr" className="absolute z-30 mr-4 mt-[223px]">
           <AddButton />
         </div>
       </div>
     </div>
   )
 }
-
 export default CustomCardB

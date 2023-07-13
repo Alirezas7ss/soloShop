@@ -1,24 +1,24 @@
 import { Star } from "lucide-react"
 import Image from "next/image"
 import React from "react"
+import { ProductList } from "@prisma/client"
 import AddButton from "./AddButton"
-import {  ProductList } from '@prisma/client';
 interface Props {
   product: ProductList
 }
 function CardProduct({ product }: Props) {
   return (
     <div className="  group relative h-[500px] w-[300px]  ">
-      <div className="mr-[50%]  h-[1px] w-[70%] translate-x-[50%] bg-light-custom-gradient  transition-all duration-400 ease-in-out group-hover:w-full dark:bg-custom-gradient " />
+      <div className="duration-400  mr-[50%] h-[1px] w-[70%] translate-x-[50%]  bg-light-custom-gradient transition-all ease-in-out group-hover:w-full dark:bg-custom-gradient " />
       {/* <div className="absolute hidden group-hover:flex rounded-bl-full rounded-br-full  top-0 overflow-hidden  aspect-square w-full h-1/3  items-center justify-center">
         <div className="translate-z-0 absolute inset-0 bg-custom-gradient opacity-50 blur-[120px]" />
       </div> */}
-      <div className="absolute -z-10 left-1/2 top-24 hidden aspect-square w-32 -translate-x-1/2   items-center justify-center group-hover:flex">
-        <div className="translate-z-0 absolute inset-0 rounded-full opacity blur-[120px] opacity-50 bg-zinc-50  " />
+      <div className="absolute left-1/2 top-24 -z-10 hidden aspect-square w-32 -translate-x-1/2   items-center justify-center group-hover:flex">
+        <div className="translate-z-0 opacity absolute inset-0 rounded-full bg-zinc-50 opacity-50 blur-[120px]  " />
       </div>
 
-      <div className="flex items-center justify-between z-20">
-        <div className="h-[400px] w-[1px] items-center  justify-center  bg-light-custom-y-gradient  transition-all duration-400 group-hover:h-[470px] dark:bg-custom-y-gradient" />
+      <div className="z-20 flex items-center justify-between">
+        <div className="duration-400 h-[400px] w-[1px]  items-center  justify-center  bg-light-custom-y-gradient transition-all group-hover:h-[470px] dark:bg-custom-y-gradient" />
         <div className="p-5 hover:shadow-md">
           <div className="h-[300px] w-[200px] bg-slate-400">
             <Image
@@ -41,16 +41,18 @@ function CardProduct({ product }: Props) {
                 </div>
                 <AddButton />
               </div>
-              <div className="flex  h-8 -mx-1">
-                  <p className="h-fit w-fit rotate-90">تومان</p>
+              <div className="-mx-1  flex h-8">
+                <p className="h-fit w-fit rotate-90">تومان</p>
                 <div className="w-full">
                   <div className="flex justify-between ">
-                    { product.price && <div>
-                      {(
-                        product.price *
-                        ((100 - product.discount) / 100)
-                      ).toLocaleString()}
-                    </div>}
+                    {product.price && (
+                      <div>
+                        {(
+                          product.price *
+                          ((100 - product.discount) / 100)
+                        ).toLocaleString()}
+                      </div>
+                    )}
                     {product.discount > 0 && (
                       <div className="-mb-[5px]  mr-1 flex items-center  justify-center rounded-lg bg-gradient-to-r from-[--brand-primary] to-[--brand-secondary] px-2 py-[2px] font-bold text-background">
                         {product.discount}%
@@ -67,9 +69,9 @@ function CardProduct({ product }: Props) {
             </div>
           </div>
         </div>
-        <div className="h-[400px]  w-[1px] items-center justify-center bg-light-custom-y-gradient  transition-all duration-400 group-hover:h-[470px]  dark:bg-custom-y-gradient " />
+        <div className="duration-400  h-[400px] w-[1px] items-center justify-center  bg-light-custom-y-gradient transition-all group-hover:h-[470px]  dark:bg-custom-y-gradient " />
       </div>
-      <div className="mr-[50%]  h-[1px] w-[70%] translate-x-[50%] bg-light-custom-gradient transition-all duration-400 group-hover:w-full dark:bg-custom-gradient  " />
+      <div className="duration-400  mr-[50%] h-[1px] w-[70%] translate-x-[50%] bg-light-custom-gradient transition-all group-hover:w-full dark:bg-custom-gradient  " />
     </div>
   )
 }

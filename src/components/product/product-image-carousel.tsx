@@ -3,10 +3,11 @@
 import * as React from "react"
 import Image from "next/image"
 import { type StoredFile } from "@/types"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
+import ZoomImage from "./ZoomImage"
+import InnerImageZoom from "react-inner-image-zoom"
 
 interface ProductImageCarouselProps
   extends React.DetailedHTMLProps<
@@ -67,7 +68,7 @@ export function ProductImageCarousel({
       {...props}
     >
       {images.length > 1 ? (
-        <div className="  flex md:w-48 w-32 flex-col items-center justify-center gap-2">
+        <div className="  flex w-32 flex-col items-center justify-center gap-2 md:w-48">
           <div
             // size="icon"
             className="ml-0.5 aspect-square  cursor-pointer rounded-none border  p-2 hover:bg-accent sm:ml-2 sm:p-1"
@@ -122,7 +123,7 @@ export function ProductImageCarousel({
           </div>
         </div>
       ) : null}
-      <div className="relative w-58 md:w-96 aspect-[9/13]  overflow-hidden">
+      <div className="w-58 relative aspect-[9/13] overflow-hidden  md:w-96">
         <div
           aria-live="polite"
           className="flex  flex-col transition-transform duration-500 ease-in-out"
@@ -130,9 +131,11 @@ export function ProductImageCarousel({
         >
           {images.length > 0 ? (
             images.map((image, index) => (
-              <Image
+              <ZoomImage
                 aria-label={`Slide ${index + 1} of ${images.length}`}
                 role="group"
+                zoom={3}
+                size={200}
                 aria-roledescription="slide"
                 key={index}
                 src={image}
@@ -141,6 +144,7 @@ export function ProductImageCarousel({
                 height={500}
                 className="h-full w-full object-cover"
               />
+              
             ))
           ) : (
             <div

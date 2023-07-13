@@ -2,12 +2,12 @@
 
 import * as React from "react"
 import { useRouter } from "next/navigation"
-import { isClerkAPIResponseError, useSignUp } from "@clerk/nextjs"
+import { useSignUp } from "@clerk/nextjs"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import type { z } from "zod"
-
+import { catchClerkError } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -57,12 +57,8 @@ export function SignUpForm() {
         toast.message("Check your email", {
           description: "We sent you a 6-digit verification code.",
         })
-      } catch (error) {
-        const unknownError = "Something went wrong, please try again."
-
-        isClerkAPIResponseError(error)
-          ? toast.error(error.errors[0]?.longMessage ?? unknownError)
-          : toast.error(unknownError)
+      } catch (err) {
+        catchClerkError(err)
       }
     })
   }
