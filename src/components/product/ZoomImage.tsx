@@ -5,11 +5,16 @@ import Image from "next/image"
 import { useMotionTemplate, motion, useMotionValue } from "framer-motion"
 import { MouseEvent } from "react"
 interface Props extends ComponentProps<typeof Image> {
-  size: number
-  zoom: number
+  size?: number
+  zoom?: number
 }
 export default function ZoomImage({ size, zoom, ...props }: Props) {
+  const zoomValue = zoom || 3
+  const sizeValue = zoom || 200
+
   const [isHovered, setIsHovered] = useState(false)
+  const [zoomD, setIsZoomD] = useState(1)
+
 
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
@@ -23,18 +28,18 @@ export default function ZoomImage({ size, zoom, ...props }: Props) {
     mouseX.set(clientX - left - 100)
     mouseY.set(clientY - top - 100)
     setMousePosition({
-      x: clientX/2 - left  ,
-      y: clientY/2 - top ,
+      x: zoomValue/2.5*(clientX/2 - left)   ,
+      y: clientY/2 - top  ,
       // x: ((clientX * zoom) / width) * size,
       // y: ((clientY * zoom) / height) * size,
     })
-    console.log(height)
-    console.log(width)
-    console.log(left)
-    console.log(clientY - top)
-    console.log(clientX/2 - left)
-    console.log(mousePosition.x)
-    console.log(mousePosition.y)
+    // console.log(height)
+    // console.log(width)
+    // console.log(left)
+    // console.log(clientY - top)
+    // console.log(clientX/2 - left)
+    // console.log(mousePosition.x)
+    // console.log(mousePosition.y)
   }
 
   // const mousePosition = useMousePosition();
@@ -58,43 +63,57 @@ export default function ZoomImage({ size, zoom, ...props }: Props) {
   return (
     <div
       className="relative overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => {setIsHovered(true)
+        setIsZoomD(zoomValue )
+      }}
       onMouseLeave={() => {setIsHovered(false)
         setMousePosition({
           x: 0 ,
           y: 0,
         })
+        setIsZoomD(1)
       }}
       onMouseMove={handleMouseMove}
     >
       <Image
         {...props}
         alt="Image"
-        style={{
-          objectPosition: `${-mousePosition.x}px ${-mousePosition.y}px`,
-
-          zIndex: 999,
-        }}
-        className={` h-auto w-full md:hover:scale-[2] transition-all duration-500`}
+        // style={{
+        //   objectPosition: `${-mousePosition.x}px ${-mousePosition.y}px`,
+        //   // scale: zoomD,
+        //   zIndex: 999,
+        // }}
+        className={` h-auto w-full  transition-all duration-500`}
       
       />
 
-      {/* {isHovered && (
+      {isHovered && (
         <motion.div
-          className="absolute border  border-gray-300 shadow-lg "
+          className="absolute border overflow-hidden border-gray-300 shadow-lg "
           style={{
             top: mouseY,
             left: mouseX,
             width: `${size}px` ,
             height: `${size}px` ,
-            backgroundImage: `url(${props.src})`,
-            backgroundPosition: `${-mousePosition.x}px ${-mousePosition.y}px`,
-            backgroundSize: `${size * zoom}px`,
+            
             backgroundRepeat: "no-repeat",
             zIndex: 999,
           }}
-        />
-      )} */}
+        >
+           
+             <Image
+                     {...props}
+                     alt="Image"
+                     style={{
+                       objectPosition: `${-mousePosition.x}px ${-mousePosition.y}px`,
+                       scale: zoomD,
+                       zIndex: 999,
+                     }}
+                     className={` h-full w-full object-cover transition-all duration-500`}
+                   
+                   />
+          </motion.div>
+      )}
     </div>
   )
 }

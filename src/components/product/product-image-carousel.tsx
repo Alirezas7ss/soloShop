@@ -126,7 +126,7 @@ export function ProductImageCarousel({
       <div className="w-58 relative aspect-[9/13] overflow-hidden  md:w-96">
         <div
           aria-live="polite"
-          className="flex  flex-col transition-transform duration-500 ease-in-out"
+          className="flex touch-pan-x flex-col transition-transform duration-500 ease-in-out"
           ref={imagesRef}
         >
           {images.length > 0 ? (
@@ -134,7 +134,7 @@ export function ProductImageCarousel({
               <ZoomImage
                 aria-label={`Slide ${index + 1} of ${images.length}`}
                 role="group"
-                zoom={3}
+                zoom={2.5}
                 size={200}
                 aria-roledescription="slide"
                 key={index}
